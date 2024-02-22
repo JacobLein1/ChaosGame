@@ -7,4 +7,8 @@ public class Complex extends Vector2D{
 
     //}
 
+    public void hello() {
+        System.out.println("Hello world!");
+    }
+
 }
