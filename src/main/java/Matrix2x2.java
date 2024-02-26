@@ -20,4 +20,17 @@ public class Matrix2x2 {
         return new Vector2D(ax0, ax1);
     }
 
+    public double geta00(){
+        return a00;
+    }
+    public double geta01(){
+        return a01;
+    }
+    public double geta10(){
+        return a10;
+    }
+    public double geta11(){
+        return a11;
+    }
+
 }
