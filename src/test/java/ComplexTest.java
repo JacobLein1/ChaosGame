@@ -9,84 +9,83 @@ class ComplexTest {
         Complex a = new Complex(1, 2);
         Complex b = new Complex(3, 4);
 
-        Assertions.assertEquals(a.getX0(),1);
-        Assertions.assertEquals(a.getX1(),2);
-        Assertions.assertEquals(b.getX0(),3);
-        Assertions.assertEquals(b.getX1(),4);
+        Assertions.assertEquals(1, a.getX0());
+        Assertions.assertEquals(2, a.getX1());
+        Assertions.assertEquals(3, b.getX0());
+        Assertions.assertEquals(4, b.getX1());
     }
+
     @Test
     void testSqrtNegativeImaginary(){
         Complex a = new Complex(0.1,-0.4);
-        Complex result = a.sqrt(0.1,-0.4);
+        Complex result = a.sqrt();
 
-        String realPart = String.format("%.5f", result.getX0());
-        String imaginaryPart = String.format("%.5f", result.getX1());
+        double realPart = result.getX0();
+        double imaginaryPart = result.getX1();
 
-        Assertions.assertEquals(realPart,"0.50612");
-        Assertions.assertEquals(imaginaryPart,"-0.39516");
+        Assertions.assertEquals(0.5061178531536732, realPart);
+        Assertions.assertEquals(-0.3951648786024424, imaginaryPart);
 
     }
     @Test
     void testSqrtHighNegReal(){
         Complex a = new Complex(-100,2);
-        Complex result = a.sqrt(a.getX0(), a.getX1());
+        Complex result = a.sqrt();
 
-        String realPart = String.format("%.5f", result.getX0());
-        String imaginaryPart = String.format("%.5f", result.getX1());
-        Assertions.assertEquals(realPart,"0.10000");
-        Assertions.assertEquals(imaginaryPart,"10.00050");
-
-
+        double realPart =  result.getX0();
+        double imaginaryPart = result.getX1();
+        Assertions.assertEquals(0.09999500087478004, realPart);
+        Assertions.assertEquals(10.000499937513121, imaginaryPart);
     }
     @Test
     void testToStringPositiveIM(){
     Complex a = new Complex(1,2);
     String result = a.complexToString();
-    Assertions.assertEquals(result,"1.0+2.0i");
+    Assertions.assertEquals("1.0+2.0i", result);
     }
     @Test
     void testToStringNegativeIM(){
         Complex a = new Complex(1,-2);
         String result = a.complexToString();
 
-        Assertions.assertEquals(result,"1.0-2.0i");
+        Assertions.assertEquals("1.0-2.0i", result);
     }
 
     @Test
     void testSqrtPositiveImaginary(){
         Complex a = new Complex(0.2,1.0);
 
-        Complex result = a.sqrt(0.2,1.0);
+        Complex result = a.sqrt();
 
-        String realPart = String.format("%.5f", result.getX0());
+        double realPart = result.getX0();
 
-        String imaginaryPart = String.format("%.5f", result.getX1());
+        double imaginaryPart = result.getX1();
 
-        Assertions.assertEquals(realPart,"0.78096");
+        Assertions.assertEquals(0.7809621958579548, realPart);
 
-        Assertions.assertEquals(imaginaryPart,"0.64024");
+        Assertions.assertEquals(0.6402358560400054, imaginaryPart);
         }
     @Test
     void testSqrtNegativeReal(){
         Complex a = new Complex(-1,2);
-        Complex result = a.sqrt(a.getX0(),a.getX1());
+        Complex result = a.sqrt();
 
-        String realPart = String.format("%.5f", result.getX0());
-        String imaginaryPart = String.format("%.5f", result.getX1());
+        double realPart =  result.getX0();
+        double imaginaryPart = result.getX1();
 
-        Assertions.assertEquals(realPart,"0.78615");
-        Assertions.assertEquals(imaginaryPart,"1.27202");
+        Assertions.assertEquals(0.7861513777574233, realPart);
+        Assertions.assertEquals(1.272019649514069, imaginaryPart);
     }
     @Test
     void testSqrtZeroImaginary(){
         Complex a = new Complex(0.0,0.0);
-        Complex result = a.sqrt(0.0,0.0);
+        Complex result = a.sqrt();
 
-        String realPart = String.format("%.5f", result.getX0());
-        String imaginaryPart = String.format("%.5f", result.getX1());
+        double realPart = result.getX0();
+        double imaginaryPart = result.getX1();
 
-        Assertions.assertEquals(realPart,"0.00000");
-        Assertions.assertEquals(imaginaryPart,"0.00000");
+        Assertions.assertEquals(0.0, realPart);
+        Assertions.assertEquals(0.0, imaginaryPart);
     }
 
 }

@@ -12,8 +12,10 @@ public class Complex extends Vector2D{
     @param imaginaryPart - the imaginary part of the complex number
     return - the square root of the complex number (another complex number)
     */
-    public Complex sqrt(double realPart, double imaginaryPart){
+    public Complex sqrt(){
 
+        double realPart = super.getX0();
+        double imaginaryPart = super.getX1();
     double resultReal;
     double resultImaginary;
 
