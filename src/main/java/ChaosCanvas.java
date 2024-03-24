@@ -1,6 +1,7 @@
 import javafx.scene.transform.Affine;
 
 public class ChaosCanvas {
+    private int[][] canvasArray;
     private int width;
     private int height;
     private Vector2D minCoords;
@@ -15,15 +16,26 @@ public class ChaosCanvas {
 
     }
     public int getPixel(Vector2D point){
-        return 0;
+        int x0 = Integer.parseInt(Double.toString(point.getX0()));
+        int x1= Integer.parseInt(Double.toString(point.getX1()));
+
+        return canvasArray[x0][x1];
     }
     public void putPixel(Vector2D point){
-        System.out.println("put pixel");
+        int x0 = Integer.parseInt(Double.toString(point.getX0()));
+        int x1= Integer.parseInt(Double.toString(point.getX1()));
+
+        canvasArray[x0][x1] = 1;
     }
     public int[][] getCanvasArray(){
-        return new int[0][0];
+        return canvasArray;
     }
     public void clearCanvas(){
-        System.out.println("clear canvas");
+        for (int i = 0; i < canvasArray.length; i++) {
+
+            for (int j = 0; j < canvasArray[i].length; j++) {
+                canvasArray[i][j] = 0;
+            }
+        }
     }
 }
