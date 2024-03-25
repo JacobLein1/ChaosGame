@@ -1,6 +1,10 @@
+package model;
+
+import model.Complex;
+
 import java.lang.Math;
 
-public class JuliaTransform implements Transform2D{
+public class JuliaTransform implements Transform2D {
     private Complex point;
     private int sign;
 

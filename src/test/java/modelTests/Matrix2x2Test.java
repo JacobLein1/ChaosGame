@@ -1,7 +1,9 @@
+package modelTests;
+
+import model.Matrix2x2;
+import model.Vector2D;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class Matrix2x2Test {
     @Test

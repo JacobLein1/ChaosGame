@@ -1,8 +1,11 @@
+package modelTests;
+
 import jdk.jfr.Description;
+import model.AffineTransform2D;
+import model.Matrix2x2;
+import model.Vector2D;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.util.Vector;
 
 public class AffineTransform2DTest {
 

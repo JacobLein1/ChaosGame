@@ -1,3 +1,8 @@
+package controller;
+
+import model.Transform2D;
+import model.Vector2D;
+
 import java.util.List;
 
 public class ChaosGameDescription {

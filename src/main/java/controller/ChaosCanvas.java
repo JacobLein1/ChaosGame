@@ -1,4 +1,7 @@
-import javafx.scene.transform.Affine;
+package controller;
+
+import model.AffineTransform2D;
+import model.Vector2D;
 
 public class ChaosCanvas {
     private int width;

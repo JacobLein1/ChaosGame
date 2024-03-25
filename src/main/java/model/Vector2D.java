@@ -1,4 +1,4 @@
-import java.util.Vector;
+package model;
 
 public class  Vector2D {
     private double x0;

@@ -1,3 +1,10 @@
+package controller;
+
+import controller.ChaosCanvas;
+import model.AffineTransform2D;
+import model.Matrix2x2;
+import model.Vector2D;
+
 import java.util.Random;
 
 public class ChaosGame {

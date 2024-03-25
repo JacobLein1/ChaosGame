@@ -1,7 +1,11 @@
+package modelTests;
+
 import jdk.jfr.Description;
+import model.Complex;
+import model.JuliaTransform;
+import model.Vector2D;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import java.lang.Math;
 
 public class JuliaTransformTest {
 

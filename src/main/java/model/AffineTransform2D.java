@@ -1,4 +1,6 @@
-public class AffineTransform2D implements Transform2D{
+package model;
+
+public class AffineTransform2D implements Transform2D {
     private Matrix2x2 matrix;
     private Vector2D vector;
 

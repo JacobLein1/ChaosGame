@@ -1,5 +1,12 @@
+import controller.ChaosCanvas;
+import controller.ChaosGame;
+import controller.ChaosGameDescription;
+import model.AffineTransform2D;
+import model.Matrix2x2;
+import model.Transform2D;
+import model.Vector2D;
+
 import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
 
