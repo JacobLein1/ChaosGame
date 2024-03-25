@@ -13,9 +13,23 @@ public class Main {
 
         ChaosGameDescription chaosGameDescription = new ChaosGameDescription(minCoords, maxCoords, transforms);
         ChaosGame chaosGame = new ChaosGame(chaosGameDescription, 100, 100);
-        chaosGame.runSteps(100);
+        chaosGame.runSteps(10000);
 
-        System.out.println(chaosGame.getCanvas());
+        ChaosCanvas canvas = chaosGame.getCanvas();
+        for (int i = 0; i < chaosGame.getCanvas().getCanvasArray().length; i++) {
+            String result = "";
+            for (int j = 0; j < chaosGame.getCanvas().getCanvasArray()[i].length; j++) {
+                if (chaosGame.getCanvas().getCanvasArray()[i][j] == 1) {
+                    result = result + "*";
+                } else {
+                    result = result + " ";
+                }
+            }
+            System.out.println(result);
+
+        }
+        //System.out.println(result.toString());
     }
+
 
 }
