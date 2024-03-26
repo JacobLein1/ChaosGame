@@ -1,6 +1,7 @@
 import controller.ChaosCanvas;
 import controller.ChaosGame;
 import controller.ChaosGameDescription;
+import controller.ChaosGameFileHandler;
 import model.AffineTransform2D;
 import model.Matrix2x2;
 import model.Transform2D;
@@ -10,8 +11,8 @@ import java.util.ArrayList;
 
 public class Main {
 
-    public static void main(String[] args) {
-        Vector2D minCoords = new Vector2D(0, 0);
+    public static void main(String[] args) throws Exception {
+        /*Vector2D minCoords = new Vector2D(0, 0);
         Vector2D maxCoords = new Vector2D(100, 100);
         Matrix2x2 matrix = new Matrix2x2(0, 0, 0, 0);
         Transform2D affineTransform2D = new AffineTransform2D(matrix, maxCoords);
@@ -19,7 +20,9 @@ public class Main {
         transforms.add(affineTransform2D);
 
         ChaosGameDescription chaosGameDescription = new ChaosGameDescription(minCoords, maxCoords, transforms);
-        ChaosGame chaosGame = new ChaosGame(chaosGameDescription, 100, 100);
+        ChaosGame chaosGame = new ChaosGame(chaosGameDescription, 100, 100);*/
+        ChaosGameFileHandler chaosGameFileHandler = new ChaosGameFileHandler();
+        ChaosGame chaosGame = chaosGameFileHandler.readTransformationFile("src/main/java/resources/affineTransformation.txt");
         chaosGame.runSteps(10000);
 
         ChaosCanvas canvas = chaosGame.getCanvas();
