@@ -3,8 +3,10 @@ package controller;
 import controller.ChaosCanvas;
 import model.AffineTransform2D;
 import model.Matrix2x2;
+import model.Transform2D;
 import model.Vector2D;
 
+import java.util.List;
 import java.util.Random;
 
 public class ChaosGame {
@@ -12,6 +14,7 @@ public class ChaosGame {
     private ChaosGameDescription description;
     private Vector2D currentPoint;
     private Random random;
+    private ChaosCanvas chaosCanvas;
 
     public ChaosGame(ChaosGameDescription chaosGameDescription, int width, int height){
         this.description = chaosGameDescription;
@@ -30,6 +33,23 @@ public class ChaosGame {
 
         Vector2D drawPoint = currentPoint;
         Vector2D chosenPoint = p1;
+
+        ChaosGameDescription description = this.description;
+        System.out.println(description.getTransforms().get(0).toString());
+        List<Transform2D> transform2DList= description.getTransforms();
+
+        /*boolean areFirstTwentyJuliaTransforms(ChaosGameDescription description) {
+            List<Transform2D> transforms = description.getTransforms();
+            int count = 0;
+
+            for (int i = 0; i < Math.min(20, transforms.size()); i++) {
+                if (transforms.get(i) instanceof model.JuliaTransform) {
+                    count++;
+                }
+            }
+
+            return count == 20;
+        }*/
 
         double M = description.getMaxCoords().getX0();
 
@@ -62,7 +82,6 @@ public class ChaosGame {
 
             //System.out.println("Round: " + (i + 1));
 
-
             if(dice == 1){
                 //System.out.println("Threw: 1");
                 chosenPoint = p1;
@@ -75,7 +94,6 @@ public class ChaosGame {
                 chosenPoint = p3;
                 //System.out.println("Threw: 3");
             }
-
             currentPoint = new Vector2D((chosenPoint.getX0() + currentPoint.getX0()) / 2, (chosenPoint.getX1() + currentPoint.getX1()) / 2);
             //System.out.println("i:" + currentPoint.getX0());
             //System.out.println("j: " + currentPoint.getX1());

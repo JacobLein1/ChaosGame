@@ -22,12 +22,8 @@ public class ChaosGameFileHandler {
             while( ( line = bufferedReader.readLine()) != null){
                 parts.add(line.trim());
             }
-            System.out.println(parts.size());
 
             if(validateTransformationFile(parts)) {
-                for (int i = 0; i < parts.size(); i++) {
-                    System.out.println(parts.get(i));
-                }
 
                 if (parts.get(0).equals("Affine2D")) {
                     transformationType = "Affine2D";
@@ -46,8 +42,23 @@ public class ChaosGameFileHandler {
                 }
                 else if (parts.get(0).equals("Julia")) {
                     transformationType = "Julia";
-                    String[] complexNumberLine = parts.get(3).split(",");
-                    Complex complexNumberC = new Complex(Double.parseDouble(complexNumberLine[0].trim()), Double.parseDouble(complexNumberLine[1].trim()));
+                    String[] complexNumberLine = parts.get(2).split(",");
+
+                    double complexNumberLineReal = Double.parseDouble(complexNumberLine[0].trim());
+                    double complexNumberLineImaginary = Double.parseDouble(complexNumberLine[1].trim());
+
+
+                    Complex complexNumberC = new Complex(complexNumberLineReal, complexNumberLineImaginary);
+                    //Check if real part of complex number is negative or positive
+                    int sign = 0;
+                    if (complexNumberLineReal < 0) {
+                        sign = -1;
+                    }
+                    if (complexNumberLineReal > 0) {
+                        sign = 1;
+                    }
+                    JuliaTransform juliaTransform = new JuliaTransform(complexNumberC, sign);
+                    transformList.add(juliaTransform);
 
                 } else {
                     throw new IllegalArgumentException("Invalid transformation type");
@@ -55,9 +66,8 @@ public class ChaosGameFileHandler {
             }
                 String[] minCoordsLine = parts.get(1).split(",");
                 String[] maxCoordsLine = parts.get(2).split(",");
-                Vector2D minCoords = new Vector2D(Integer.parseInt(minCoordsLine[0].trim()), Integer.parseInt(minCoordsLine[1].trim()));
-                Vector2D maxCoords = new Vector2D(Integer.parseInt(maxCoordsLine[2].trim()), Integer.parseInt(maxCoordsLine[3].trim()));
-
+                Vector2D minCoords = new Vector2D(Double.parseDouble(minCoordsLine[0].trim()), Double.parseDouble(minCoordsLine[1].trim()));
+                Vector2D maxCoords = new Vector2D(Double.parseDouble(maxCoordsLine[0].trim()), Double.parseDouble(maxCoordsLine[1].trim()));
                 ChaosGameDescription chaosGameDescription = new ChaosGameDescription(minCoords, maxCoords, transformList);
                 chaosGame = new ChaosGame(chaosGameDescription, (int) maxCoords.getX0(), (int) maxCoords.getX1());
                 bufferedReader.close();
@@ -81,6 +91,7 @@ public class ChaosGameFileHandler {
     public AffineTransform2D setAffineTransformation(String[] AffineLine) {
         return new AffineTransform2D(new Matrix2x2(Double.parseDouble(AffineLine[0]), Double.parseDouble(AffineLine[1]), Double.parseDouble(AffineLine[2]), Double.parseDouble(AffineLine[3])), new Vector2D(Double.parseDouble(AffineLine[4]), Double.parseDouble(AffineLine[5])));
     }
+
 
 }
 
