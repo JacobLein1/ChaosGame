@@ -26,10 +26,10 @@ public class ChaosGame {
         return canvas;
     }
     public void runSteps(int steps){
-        Vector2D p1 = new Vector2D(50, 99);
-        Vector2D p2 = new Vector2D(0, 0);
-        Vector2D p3 = new Vector2D(99, 0);
-        currentPoint = new Vector2D(0,0);
+        Vector2D p1 = new Vector2D(canvas.getMaxCoords().getX0()/2, canvas.getMaxCoords().getX1()-1);
+        Vector2D p2 = new Vector2D(canvas.getMinCoords().getX0(), canvas.getMinCoords().getX1());
+        Vector2D p3 = new Vector2D(canvas.getMaxCoords().getX0()-1, canvas.getMinCoords().getX1());
+        currentPoint = new Vector2D(p2.getX0(), p2.getX1());
 
         Vector2D drawPoint = currentPoint;
         Vector2D chosenPoint = p1;
