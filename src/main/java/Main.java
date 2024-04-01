@@ -2,12 +2,12 @@ import controller.ChaosCanvas;
 import controller.ChaosGame;
 import controller.ChaosGameDescription;
 import controller.ChaosGameFileHandler;
-import model.AffineTransform2D;
-import model.Matrix2x2;
-import model.Transform2D;
-import model.Vector2D;
+import model.*;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
 
 public class Main {
 
@@ -39,6 +39,45 @@ public class Main {
 
         }
         //System.out.println(result.toString());
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Enter transformation type (Affine2D or Julia): ");
+        String transformationName = input.nextLine();
+
+        System.out.println("Enter the lower left coordinates: ");
+        String minCoords = input.nextLine();
+        System.out.println("Enter the upper right coordinates: ");
+        String maxCoords = input.nextLine();
+        int[] coords = new int[4];
+        String[] minList = minCoords.split(",");
+        String[] maxList = maxCoords.split(",");
+        coords[0] = Integer.parseInt(minList[0].trim());
+        coords[1] = Integer.parseInt(minList[1].trim());
+        coords[2] = Integer.parseInt(maxList[0].trim());
+        coords[3] = Integer.parseInt(maxList[1].trim());
+
+        List<Transform2D> transformations = new ArrayList<>();
+        if(transformationName.equals("Affine2D")){
+            System.out.println("Enter transformation (a00, a01, a10, a11, b1, b2), enter 0 to when you have added all transformations: ");
+            String transformation = input.nextLine();
+            while (!transformation.equals("0")){
+                System.out.println("Enter transformation (a00, a01, a10, a11, b1, b2), enter 0 to when you have added all transformations: ");
+                transformation = input.nextLine();
+                String[] values = transformation.split(",");
+                transformations.add(new AffineTransform2D(new Matrix2x2(Integer.parseInt(values[0].trim()), Integer.parseInt(values[1].trim()), Integer.parseInt(values[2].trim()), Integer.parseInt(values[3].trim())), new Vector2D(Integer.parseInt(values[4].trim()), Integer.parseInt(values[5].trim()))));
+            }
+        }
+        if(transformationName.equals("Julia")){
+            System.out.println("Enter complex number c (real part, imaginary part): ");
+            String transformation = input.nextLine();
+            String[] values = transformation.split(",");
+            Random rand = new Random();
+            boolean sign = rand.nextBoolean();
+            transformations.add(new JuliaTransform(new Complex(Integer.parseInt(values[0].trim()), Integer.parseInt(values[1].trim())), sign ? 1:-1));
+        }
+
+        ChaosGameDescription chaosGameDescription = new ChaosGameDescription(new Vector2D(coords[0], coords[1]), new Vector2D(coords[2], coords[3]), transformations);
+
     }
 
 
