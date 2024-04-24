@@ -63,4 +63,11 @@ class ChaosCanvasTest {
         Assertions.assertEquals(99, chaosCanvas.getMaxCoords().getX0());
         Assertions.assertEquals(99, chaosCanvas.getMaxCoords().getX1());
     }
+    @Test
+    void testTransformCoordsToIndices(){
+        chaosCanvas.putPixel(new Vector2D(0.25, 0));
+        Assertions.assertEquals(1, chaosCanvas.getPixel(new Vector2D(0.25, 0)));
+        System.out.println(chaosCanvas.getPixel(new Vector2D(0.25, 0)));
+
+    }
 }
