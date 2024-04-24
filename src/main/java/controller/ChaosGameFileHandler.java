@@ -60,7 +60,9 @@ public class ChaosGameFileHandler {
                     JuliaTransform juliaTransform = new JuliaTransform(complexNumberC, sign);
                     transformList.add(juliaTransform);
 
-                } else {
+                }
+
+                else {
                     throw new IllegalArgumentException("Invalid transformation type");
                 }
             }
