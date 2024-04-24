@@ -18,7 +18,7 @@ public class ChaosCanvas {
         this.height = height;
         this.minCoords = minCoords;
         this.maxCoords = maxCoords;
-        this.canvasArray = new int[width][height];
+        this.canvasArray = new int[width+1][height+1];
 
         double Ax1 = (this.width-1)/(minCoords.getX1()-maxCoords.getX1());
         double Ax2 = (this.height-1)/(maxCoords.getX0()-minCoords.getX0());
