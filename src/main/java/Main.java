@@ -1,13 +1,4 @@
-import controller.ChaosCanvas;
 import controller.ChaosGame;
-import controller.ChaosGameDescription;
-import controller.ChaosGameFileHandler;
-import model.*;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
 
 public class Main {
 
@@ -21,7 +12,8 @@ public class Main {
 
         ChaosGameDescription chaosGameDescription = new ChaosGameDescription(minCoords, maxCoords, transforms);
         ChaosGame chaosGame = new ChaosGame(chaosGameDescription, 100, 100);*/
-        ChaosGameFileHandler chaosGameFileHandler = new ChaosGameFileHandler();
+
+        /**ChaosGameFileHandler chaosGameFileHandler = new ChaosGameFileHandler();
         ChaosGame chaosGame = chaosGameFileHandler.readTransformationFile("src/main/java/resources/affineTransformation.txt");
         chaosGame.runSteps(10000);
 
@@ -77,8 +69,27 @@ public class Main {
         }
 
         ChaosGameDescription chaosGameDescription = new ChaosGameDescription(new Vector2D(coords[0], coords[1]), new Vector2D(coords[2], coords[3]), transformations);
+        */
+        //ChaosGame chaosGame = new ChaosGame(ChaosGameDescriptionFactory.get(""), 100, 100);
+        //chaosGame.runSteps(10000);
+        //It works 😄
+        ChaosGame chaosGame = new ChaosGame(ChaosGameDescriptionFactory.julia(), 100, 100);
+        chaosGame.runSteps(10000);
 
+        for (int i = 0; i < chaosGame.getCanvas().getCanvasArray().length; i++) {
+            String result = "";
+            for (int j = 0; j < chaosGame.getCanvas().getCanvasArray()[i].length; j++) {
+                if (chaosGame.getCanvas().getCanvasArray()[i][j] == 1) {
+                    result = result + "*";
+                } else {
+                    result = result + " ";
+                }
+            }
+            System.out.println(result);
+
+        }
     }
+
 
 
 }
