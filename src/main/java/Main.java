@@ -1,4 +1,5 @@
 import controller.ChaosGame;
+import controller.ChaosGameDescriptionFactory;
 
 public class Main {
 
@@ -70,11 +71,11 @@ public class Main {
 
         ChaosGameDescription chaosGameDescription = new ChaosGameDescription(new Vector2D(coords[0], coords[1]), new Vector2D(coords[2], coords[3]), transformations);
         */
-        //ChaosGame chaosGame = new ChaosGame(ChaosGameDescriptionFactory.get(""), 100, 100);
-        //chaosGame.runSteps(10000);
-        //It works 😄
-        ChaosGame chaosGame = new ChaosGame(ChaosGameDescriptionFactory.julia(), 100, 100);
+        ChaosGame chaosGame = new ChaosGame(ChaosGameDescriptionFactory.get("Barnsley"), 1000, 1000);
         chaosGame.runSteps(10000);
+        //It works 😄
+        //ChaosGame chaosGame = new ChaosGame(controller.ChaosGameDescriptionFactory.barnsley(), 100, 100);
+        //chaosGame.runSteps(10000);
 
         for (int i = 0; i < chaosGame.getCanvas().getCanvasArray().length; i++) {
             String result = "";
