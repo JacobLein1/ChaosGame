@@ -2,24 +2,25 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 import java.util.Observer;
 
 
 public abstract class ChaosGameObservable {
-    private List<Observer> observers;
+    private List<ChaosGameObserver> chaosGameObservers;
 
     public ChaosGameObservable(){
-        this.observers = new ArrayList<>();
+        this.chaosGameObservers = new ArrayList<>();
     }
 
-    public void attach(Observer observer){
-        observers.add(observer);
+    public void attach(ChaosGameObserver observer){
+        chaosGameObservers.add(observer);
+    }
+    public void detach (ChaosGameObserver chaosGameObserver){
+        chaosGameObservers.remove(chaosGameObserver);
     }
 
-    public void detach (Observer observer){
-        observers.remove(observer);
-    }
     public void notifyObservers(){
-        //observers.forEach(observer -> observer.update(,null));
+        chaosGameObservers.forEach(observer -> observer.updateGame());
     }
 }

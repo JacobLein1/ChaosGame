@@ -1,3 +1,5 @@
+package controller;
+
 import controller.ChaosCanvas;
 import controller.ChaosGame;
 import controller.ChaosGameDescription;

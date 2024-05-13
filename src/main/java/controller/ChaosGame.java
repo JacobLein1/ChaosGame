@@ -2,6 +2,8 @@ package controller;
 
 import model.Vector2D;
 
+import java.util.List;
+import java.util.Observer;
 import java.util.Random;
 
 public class ChaosGame implements ChaosGameObserver{
@@ -34,7 +36,7 @@ public class ChaosGame implements ChaosGameObserver{
 
     @Override
     public void updateGame() {
-
+        //runSteps(10000);
     }
 
 }
