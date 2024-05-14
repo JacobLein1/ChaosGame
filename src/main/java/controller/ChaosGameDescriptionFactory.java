@@ -12,18 +12,19 @@ import java.util.Random;
 
 public class ChaosGameDescriptionFactory {
 
-    public static Vector2D minCoords;
-    public static Vector2D maxCoords;
+    private static Vector2D minCoords;
+    private static Vector2D maxCoords;
     //static Complex complexNumberC = new Complex(-0.74543, 0.11301);
     //static JuliaTransform juliaTransform = new JuliaTransform(complexNumberC,-1);
 
     public ChaosGameDescriptionFactory(){}; //Constructor
-    public static ChaosGameDescription get(String transformationType) throws Exception{
+    public static ChaosGameDescription get(String transformationType) throws IllegalArgumentException{
 
         return switch(transformationType){
             case "Affine2D" -> affineTransform();
             case "Barnsley" -> barnsley();
-            default -> throw new Exception("Invalid transformation type");
+            case "Julia" -> julia();
+            default -> throw new IllegalArgumentException("Invalid transformation type");
         };
 
     }
