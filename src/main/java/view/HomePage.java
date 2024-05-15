@@ -15,6 +15,7 @@ import model.Matrix2x2;
 import model.Transform2D;
 import model.Vector2D;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -89,5 +90,27 @@ public class HomePage extends Application{
 
     public static void main(String[] args) {
        HomePage.launch(args);
+    }
+
+    public void setOpenFileMenu(){
+       Button openFile = new Button("Open file");
+       openFile.setOnAction(actionEvent -> {
+           FileChooser fileChooser = new FileChooser();
+           fileChooser.setTitle("Open Resource File");
+           File file = fileChooser.showOpenDialog(null);
+           if (file != null){
+               try {
+                   chaosGameDescription = chaosGameFileHandler.readTransformationFile(file.getAbsolutePath());
+                   chaosGame = new ChaosGame(chaosGameDescription, 100, 100);
+               } catch (Exception e) {
+                   e.printStackTrace();
+                   throw new IllegalArgumentException("File not found");
+               }
+           }
+       });
+       VBox openFileMenu = new VBox(openFile);
+        openFileMenu.setSpacing(5);
+        openFileMenu.setPadding(new Insets(10,10,10,10));
+       root.setLeft(openFileMenu);
     }
 }
