@@ -3,7 +3,8 @@ package controller;
 import model.AffineTransform2D;
 import model.Matrix2x2;
 import model.Vector2D;
-import java.lang.Math;
+
+import java.util.Arrays;
 
 public class ChaosCanvas {
     private final int width;
@@ -18,12 +19,12 @@ public class ChaosCanvas {
         this.height = height;
         this.minCoords = minCoords;
         this.maxCoords = maxCoords;
-        this.canvasArray = new int[width+1][height+1];
+        this.canvasArray = new int[width][height];
 
-        double Ax1 = (this.width-1)/(minCoords.getX1()-maxCoords.getX1());
-        double Ax2 = (this.height-1)/(maxCoords.getX0()-minCoords.getX0());
-        double b1 = ((this.width-1)*maxCoords.getX1()) / (maxCoords.getX1()-minCoords.getX1());
-        double b2 = ((this.height-1)*minCoords.getX0())/(minCoords.getX0()-maxCoords.getX0());
+        double Ax1 = (this.width -1)/(minCoords.getX1()-maxCoords.getX1());
+        double Ax2 = (this.height -1)/(maxCoords.getX0()-minCoords.getX0());
+        double b1 = ((this.width -1)*maxCoords.getX1()) / (maxCoords.getX1()-minCoords.getX1());
+        double b2 = ((this.height -1)*minCoords.getX0())/(minCoords.getX0()-maxCoords.getX0());
         Matrix2x2 matrixA = new Matrix2x2(0, Ax1, Ax2, 0);
         Vector2D b = new Vector2D(b1, b2);
         this.transformCoordsToIndices = new AffineTransform2D(matrixA, b);
@@ -46,19 +47,16 @@ public class ChaosCanvas {
         return canvasArray;
     }
     public void clearCanvas(){
-        for (int i = 0; i < canvasArray.length; i++) {
-
-            for (int j = 0; j < canvasArray[i].length; j++) {
-                canvasArray[i][j] = 0;
-            }
+        for (int[] ints : canvasArray) {
+            Arrays.fill(ints, 0);
         }
     }
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < canvasArray.length; i++) {
-            for (int j = 0; j < canvasArray[i].length; j++) {
-                sb.append(canvasArray[i][j]).append(" "); // Legg til matriseelement og mellomrom
+        for (int[] ints : canvasArray) {
+            for (int anInt : ints) {
+                sb.append(anInt).append(" "); // Legg til matriseelement og mellomrom
             }
             sb.append("\n"); // Legg til linjeskift etter hver rad
         }
