@@ -13,6 +13,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
+/**
+ * The type Barnsley page.
+ */
 public class BarnsleyPage extends Application {
     private Stage barnsleyStage;
     private BorderPane root;
@@ -21,6 +24,9 @@ public class BarnsleyPage extends Application {
     private final int height = 600;
     private TextField stepsBox;
 
+    /**
+     * Instantiates a new Barnsley page.
+     */
     public BarnsleyPage() {
         root = new BorderPane();
         setMenu();
@@ -37,6 +43,9 @@ public class BarnsleyPage extends Application {
         barnsleyStage.show();
     }
 
+    /**
+     * Set menu.
+     */
     public void setMenu(){
         Label header = new Label("Barnsley Fern");
         Label numberLabel = new Label("Number of steps:");
@@ -70,6 +79,9 @@ public class BarnsleyPage extends Application {
         root.setTop(menu);
     }
 
+    /**
+     * Display fractal.
+     */
     public void displayFractal(){
         InitializeChaosGame initializeChaosGame = new InitializeChaosGame(chaosGame, Integer.parseInt(stepsBox.getText()), width, height);
         ImageView image = initializeChaosGame.createFractalDisplay();

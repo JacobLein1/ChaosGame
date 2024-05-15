@@ -13,6 +13,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
+/**
+ * The type Affine 2 d page.
+ */
 public class Affine2DPage extends Application {
     private Stage affine2DStage;
     private final BorderPane root;
@@ -21,6 +24,9 @@ public class Affine2DPage extends Application {
     private final int height = 600;
     private TextField stepsBox;
 
+    /**
+     * Instantiates a new Affine 2 d page.
+     */
     public Affine2DPage() {
         root = new BorderPane();
         setMenu();
@@ -37,6 +43,9 @@ public class Affine2DPage extends Application {
         affine2DStage.show();
     }
 
+    /**
+     * Set menu.
+     */
     public void setMenu(){
         Label header = new Label("Sierpinski");
         Label numberLabel = new Label("Number of steps:");
@@ -69,6 +78,9 @@ public class Affine2DPage extends Application {
         root.setTop(menu);
     }
 
+    /**
+     * Display fractal.
+     */
     public void displayFractal(){
         InitializeChaosGame initializeChaosGame = new InitializeChaosGame(chaosGame, Integer.parseInt(stepsBox.getText()), width, height);
         ImageView image = initializeChaosGame.createFractalDisplay();

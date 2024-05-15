@@ -1,29 +1,24 @@
 package view;
 
-import controller.ChaosGame;
-import controller.ChaosGameDescription;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import model.AffineTransform2D;
-import model.Matrix2x2;
-import model.Transform2D;
-import model.Vector2D;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-
+/**
+ * The type Home page.
+ */
 public class HomePage extends Application{
     private Stage homeStage;
     private final BorderPane root = new BorderPane();
     private ComboBox<String> fractalType;
 
+    /**
+     * Instantiates a new Home page.
+     */
     public HomePage(){
         HBox bottom = new HBox();
         bottom.setPrefSize(50, 50);
@@ -43,6 +38,9 @@ public class HomePage extends Application{
         homeStage.show();
     }
 
+    /**
+     * Set menu.
+     */
     public void setMenu(){
         Label header = new Label("Home");
         String[] fractals = {"Affine2D", "Barnsley", "Julia", "Create new Affine transformation", "Create new Barnsley transformation", "Upload from files"};
@@ -65,6 +63,11 @@ public class HomePage extends Application{
         root.setTop(menu);
     }
 
+    /**
+     * Choose fractal on action.
+     *
+     * @throws Exception the exception
+     */
     public void chooseFractalOnAction() throws Exception {
         if(fractalType.getValue().equals("Julia")){
             JuliaPage juliaPage = new JuliaPage();
@@ -88,29 +91,12 @@ public class HomePage extends Application{
         }
     }
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
        HomePage.launch(args);
-    }
-
-    public void setOpenFileMenu(){
-       Button openFile = new Button("Open file");
-       openFile.setOnAction(actionEvent -> {
-           FileChooser fileChooser = new FileChooser();
-           fileChooser.setTitle("Open Resource File");
-           File file = fileChooser.showOpenDialog(null);
-           if (file != null){
-               try {
-                   chaosGameDescription = chaosGameFileHandler.readTransformationFile(file.getAbsolutePath());
-                   chaosGame = new ChaosGame(chaosGameDescription, 100, 100);
-               } catch (Exception e) {
-                   e.printStackTrace();
-                   throw new IllegalArgumentException("File not found");
-               }
-           }
-       });
-       VBox openFileMenu = new VBox(openFile);
-        openFileMenu.setSpacing(5);
-        openFileMenu.setPadding(new Insets(10,10,10,10));
-       root.setLeft(openFileMenu);
     }
 }
