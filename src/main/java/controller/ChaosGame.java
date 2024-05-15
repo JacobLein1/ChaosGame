@@ -26,10 +26,7 @@ public class ChaosGame implements ChaosGameObserver{
     public void runSteps(int steps){
         for (int j = 0; j < steps; j++) {
             int randomInt = random.nextInt(description.getTransforms().size());
-            System.out.println("Random int: " + randomInt);
-            System.out.println("Current point before transform:" + currentPoint.getX0() + " " + currentPoint.getX1());
             currentPoint = description.getTransforms().get(randomInt).Transform(currentPoint);
-            System.out.println("Current point after transform:" + currentPoint.getX0() + " " + currentPoint.getX1());
             canvas.putPixel(currentPoint);
         }
     }

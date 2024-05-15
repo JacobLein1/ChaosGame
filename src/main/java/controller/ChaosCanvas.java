@@ -40,7 +40,6 @@ public class ChaosCanvas {
         point = transformCoordsToIndices.Transform(point);
         int x0 = (int) point.getX0();
         int x1= (int) point.getX1();
-        System.out.println("Drew: x0: " + x0 + " x1: " + x1);
         canvasArray[x0][x1] = 1;
     }
     public int[][] getCanvasArray(){
