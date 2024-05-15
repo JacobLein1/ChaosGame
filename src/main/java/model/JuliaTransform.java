@@ -27,4 +27,7 @@ public class JuliaTransform implements Transform2D {
         Complex radicand = new Complex(vector.getX0(), vector.getX1());
         return new Vector2D(radicand.sqrt().getX0()*Math.signum(sign), radicand.sqrt().getX1()*Math.signum(sign));
     }
+    public Complex getPoint(){
+        return point;
+    }
 }
