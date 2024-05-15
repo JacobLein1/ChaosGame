@@ -26,8 +26,8 @@ public class ChaosGameFileHandler {
             return s.substring(0, unwantedIndex).strip();
         }
     }
-    public ChaosGame readTransformationFile(String path) throws Exception{
-        ChaosGame chaosGame = null;
+    public ChaosGameDescription readTransformationFile(String path) throws Exception{
+        ChaosGameDescription chaosGameDescription = null;
 
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path))) {
             String line = "";
@@ -89,14 +89,13 @@ public class ChaosGameFileHandler {
                 String[] maxCoordsLine = parts.get(2).split(",");
                 Vector2D minCoords = new Vector2D(Double.parseDouble(minCoordsLine[0].trim()), Double.parseDouble(minCoordsLine[1].trim()));
                 Vector2D maxCoords = new Vector2D(Double.parseDouble(maxCoordsLine[0].trim()), Double.parseDouble(maxCoordsLine[1].trim()));
-                ChaosGameDescription chaosGameDescription = new ChaosGameDescription(minCoords, maxCoords, transformList);
-                chaosGame = new ChaosGame(chaosGameDescription, (int) maxCoords.getX0(), (int) maxCoords.getX1());
+                chaosGameDescription = new ChaosGameDescription(minCoords, maxCoords, transformList);
 
         } catch (IllegalArgumentException e) {
             throw new RuntimeException(e);
         }
 
-        return chaosGame;
+        return chaosGameDescription;
     }
     public boolean validateTransformationFile(List<String> parts) {
         boolean result = true;

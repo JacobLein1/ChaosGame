@@ -89,7 +89,7 @@ class ChaosGameFileHandlerTest {
     public void testReadAffineFile() throws Exception {
         transforms.add(affineTransform2D);
         chaosGameFileHandler.writeToFile(chaosGameDescriptionAffine, "src/main/java/resources/transformationTest.txt");
-        chaosGame = chaosGameFileHandler.readTransformationFile("src/main/java/resources/transformationTest.txt");
+        chaosGame = new ChaosGame(chaosGameFileHandler.readTransformationFile("src/main/java/resources/transformationTest.txt"),100,100);
         assertEquals(chaosGameDescriptionAffine.getMinCoords(),minCoords);
         assertEquals(chaosGameDescriptionAffine.getMaxCoords(), maxCoords);
         assertEquals(chaosGameDescriptionAffine.getTransforms().size(), transforms.size());
@@ -110,7 +110,7 @@ class ChaosGameFileHandlerTest {
         transforms.add(juliaTransform);
         ChaosGameDescription chaosGameDescriptionJulia = new ChaosGameDescription(new Vector2D(-1.6,-1), new Vector2D(1.6,1), transforms);
         chaosGameFileHandler.writeToFile(chaosGameDescriptionJulia, "src/main/java/resources/transformationTest.txt");
-        chaosGame = chaosGameFileHandler.readTransformationFile("src/main/java/resources/transformationTest.txt");
+        chaosGame = new ChaosGame(chaosGameFileHandler.readTransformationFile("src/main/java/resources/transformationTest.txt"),100,100);
         assertEquals(chaosGame.getCanvas().getMinCoords().getX0(), -1.6);
         assertEquals(chaosGame.getCanvas().getMinCoords().getX1(), -1);
         assertEquals(chaosGame.getCanvas().getMaxCoords().getX0(), 1.6);
