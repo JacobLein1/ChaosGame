@@ -3,6 +3,7 @@ package view;
 import controller.ChaosGame;
 import controller.ChaosGameDescription;
 import controller.ChaosGameDescriptionFactory;
+import controller.ChaosGameFileHandler;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
@@ -11,12 +12,14 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.AffineTransform2D;
 import model.Matrix2x2;
 import model.Transform2D;
 import model.Vector2D;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +32,7 @@ public class HomePage extends Application{
     private Button showFractal;
     private ChaosGame chaosGame;
     private ChaosGameDescription chaosGameDescription;
+    private ChaosGameFileHandler chaosGameFileHandler = new ChaosGameFileHandler();
     private TextField vectorX0;
     private TextField vectorX1;
     private TextField matrix00;
@@ -185,6 +189,9 @@ public class HomePage extends Application{
             chaosGameDescription = new ChaosGameDescription(new Vector2D(-2.1820, 0), new Vector2D(2.6558, 9.9983), newTransformations);
             chaosGame = new ChaosGame(chaosGameDescription, 100, 100);
         }
+        if (fractalType.getValue().equals("Upload from files")){
+            setOpenFileMenu();
+        }
         //observer her
         setFractalDisplay();
         root.setCenter(display);
@@ -205,5 +212,27 @@ public class HomePage extends Application{
 
     public static void main(String[] args) {
         HomePage.launch(args);
+    }
+
+    public void setOpenFileMenu(){
+       Button openFile = new Button("Open file");
+       openFile.setOnAction(actionEvent -> {
+           FileChooser fileChooser = new FileChooser();
+           fileChooser.setTitle("Open Resource File");
+           File file = fileChooser.showOpenDialog(null);
+           if (file != null){
+               try {
+                   chaosGameDescription = chaosGameFileHandler.readTransformationFile(file.getAbsolutePath());
+                   chaosGame = new ChaosGame(chaosGameDescription, 100, 100);
+               } catch (Exception e) {
+                   e.printStackTrace();
+                   throw new IllegalArgumentException("File not found");
+               }
+           }
+       });
+       VBox openFileMenu = new VBox(openFile);
+        openFileMenu.setSpacing(5);
+        openFileMenu.setPadding(new Insets(10,10,10,10));
+       root.setLeft(openFileMenu);
     }
 }
