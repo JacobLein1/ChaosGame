@@ -1,5 +1,7 @@
 import controller.ChaosGame;
 import controller.ChaosGameDescriptionFactory;
+import view.Affine2DPage;
+import view.HomePage;
 
 public class Main {
 
@@ -71,7 +73,7 @@ public class Main {
 
         ChaosGameDescription chaosGameDescription = new ChaosGameDescription(new Vector2D(coords[0], coords[1]), new Vector2D(coords[2], coords[3]), transformations);
         */
-        ChaosGame chaosGame = new ChaosGame(ChaosGameDescriptionFactory.get("Affine2D"), 100, 100);
+        /**ChaosGame chaosGame = new ChaosGame(ChaosGameDescriptionFactory.get("Affine2D"), 100, 100);
         chaosGame.runSteps(10000);
         //It works 😄
         //ChaosGame chaosGame = new ChaosGame(controller.ChaosGameDescriptionFactory.barnsley(), 100, 100);
@@ -88,7 +90,8 @@ public class Main {
             }
             System.out.println(result);
 
-        }
+        }*/
+
     }
 
 
