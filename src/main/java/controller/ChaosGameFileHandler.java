@@ -17,6 +17,12 @@ import java.util.stream.Collectors;
 public class ChaosGameFileHandler {
     public ChaosGameFileHandler(){} //Constructor
 
+    /**
+     * Clean string method. Removes all characters after # in a string.
+     *
+     * @param s the string wanting to be cleaned
+     * @return the string
+     */
     public static String cleanString(String s) {
         int unwantedIndex = s.indexOf("#");
 
@@ -43,6 +49,7 @@ public class ChaosGameFileHandler {
                 parts.add(line.trim());
             }
 
+            //Clause for Affine transformation
             if(validateTransformationFile(parts)) {
                 if (cleanString(parts.get(0)).equals("Affine2D")) {
 
@@ -60,6 +67,7 @@ public class ChaosGameFileHandler {
                     transformList.add(affineTransform2D);
                 }
 
+                //Clause for Julia transformation
                 else if (cleanString(parts.get(0)).equals("Julia")) {
                     String[] complexNumberLine = parts.get(2).split(",");
 
@@ -78,12 +86,13 @@ public class ChaosGameFileHandler {
                     }
                     JuliaTransform juliaTransform = new JuliaTransform(complexNumberC, sign);
                     transformList.add(juliaTransform);
-
                 }
 
                 else {
                     throw new IllegalArgumentException("Invalid transformation type");
                 }
+            } else {
+                throw new IllegalArgumentException("Invalid transformation file format, check the file and try again.");
             }
                 String[] minCoordsLine = parts.get(1).split(",");
                 String[] maxCoordsLine = parts.get(2).split(",");
@@ -94,15 +103,47 @@ public class ChaosGameFileHandler {
         } catch (IllegalArgumentException e) {
             throw new RuntimeException(e);
         }
-
         return chaosGameDescription;
     }
     public boolean validateTransformationFile(List<String> parts) {
         boolean result = true;
-        for (int i = 0; i < parts.size(); i++) {
-          if(parts.get(i).isEmpty()){
-              result = false;
-          }
+        List<String> validTypes = Arrays.asList("Affine2D", "Julia", "Barnsley");
+        if (!validTypes.contains(cleanString(parts.get(0)))) {
+            return false;
+        }
+        if (cleanString(parts.get(0)).equals("Affine2D")) {
+            if (parts.size() < 4) {
+                return false;
+            }
+            for (int i = 3; i < parts.size(); i++) {
+                String[] affineLine = parts.get(i).split(",");
+                if (affineLine.length != 6) {
+                    return false;
+                }
+                for (int j = 0; j < affineLine.length; j++) {
+                    try {
+                        Double.parseDouble(affineLine[j].trim());
+                    } catch (NumberFormatException e) {
+                        return false;
+                    }
+                }
+            }
+        }
+        if (cleanString(parts.get(0)).equals("Julia")) {
+            if (parts.size() != 4) {
+                return false;
+            }
+            String[] complexNumberLine = parts.get(2).split(",");
+            if (complexNumberLine.length != 2) {
+                return false;
+            }
+            for (int i = 0; i < complexNumberLine.length; i++) {
+                try {
+                    Double.parseDouble(complexNumberLine[i].trim());
+                } catch (NumberFormatException e) {
+                    return false;
+                }
+            }
         }
         return result;
     }
@@ -229,5 +270,6 @@ public class ChaosGameFileHandler {
         }
         return result.toString();
     }
+
 }
 
