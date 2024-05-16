@@ -169,7 +169,7 @@ public class ChaosGameFileHandler {
     public void writeToFile(ChaosGameDescription chaosGameDescription, String path) throws IOException {
         Path filePath = Path.of(path);
         if (!Files.exists(filePath)) {
-            throw new IOException("File path not found");
+            Files.createFile(filePath);
         }
 
         List<Transform2D> transform2DList = chaosGameDescription.getTransforms();
