@@ -28,13 +28,12 @@ public class CreateUploadFilePage extends Application {
     private final BorderPane root;
     private ChaosGameDescription chaosGameDescription;
     private ChaosGame chaosGame;
-    private ChaosGameFileHandler chaosGameFileHandler = new ChaosGameFileHandler();
+    private final ChaosGameFileHandler chaosGameFileHandler = new ChaosGameFileHandler();
 
     private TextField stepsBox;
     private final int width = 500;
     private final int height = 600;
     private File file;
-    private Text fileText;
 
     /**
      * Instantiates a new Upload file page.
@@ -76,9 +75,10 @@ public class CreateUploadFilePage extends Application {
             }
             displayFractal();
         });
+
         VBox openFileBox = new VBox();
         Button openFile = new Button("Open file");
-        fileText = new Text("No file selected");
+        Text fileText = new Text("No file selected");
         openFileBox.getChildren().addAll(openFile, fileText);
         openFileBox.setPadding(new Insets(20, 10, 10, 20));
 
