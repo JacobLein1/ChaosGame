@@ -2,6 +2,7 @@ package view;
 
 import controller.ChaosGame;
 import controller.ChaosGameDescription;
+import controller.ChaosGameFileHandler;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -12,12 +13,15 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.AffineTransform2D;
 import model.Matrix2x2;
 import model.Transform2D;
 import model.Vector2D;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +34,8 @@ public class CreateBarnsleyPage extends Application {
     private final int width = 500;
     private final int height = 600;
     private TextField stepsBox;
+    private Text fileText;
+    ChaosGameFileHandler chaosGameFileHandler = new ChaosGameFileHandler();
 
     public CreateBarnsleyPage() {
         root = new BorderPane();
@@ -112,10 +118,38 @@ public class CreateBarnsleyPage extends Application {
             matrix11.clear();
             vectorX0.clear();
             vectorX1.clear();
+            chaosGameDescription = new ChaosGameDescription(new Vector2D(-2.1820, 0), new Vector2D(2.6558, 9.9983), newTransformations);
         });
 
+        VBox saveAsFileBox = new VBox();
+        fileText = new Text("No file selected");
         Button saveAsFile = new Button("Save as file");
-        //noe her
+        saveAsFileBox.getChildren().addAll(saveAsFile, fileText);
+        saveAsFile.setOnAction(actionEvent -> {
+            try {
+                if (chaosGameDescription == null) {
+                    throw new IllegalArgumentException("No transformation to save");
+                }else {
+                    //User selects file path
+                    FileChooser fileChooser = new FileChooser();
+                    fileChooser.setTitle("Save Transformation File");
+                    File file = fileChooser.showSaveDialog(createBarnsleyStage);
+
+                    if (file != null) {
+                        fileText.setText(file.getAbsolutePath());
+                        System.out.println("Path chosen");
+
+                        chaosGameFileHandler.writeToFile(chaosGameDescription, file.getAbsolutePath());
+                        fileText.setText("File saved to " + fileText.getText());
+                    }
+                    else {
+                        fileText.setText("No path selected");
+                    }
+                }
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
 
         VBox newTransformationMenu = new VBox(
                 vectorLabel, vectorX0, vectorX1,
