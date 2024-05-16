@@ -89,6 +89,10 @@ public class HomePage extends Application{
             CreateBarnsleyPage createBarnsleyPage = new CreateBarnsleyPage();
             createBarnsleyPage.start(homeStage);
         }
+        if (fractalType.getValue().equals("Upload from files")) {
+            CreateUploadFilePage uploadPage = new CreateUploadFilePage();
+            uploadPage.start(homeStage);
+        }
     }
 
     /**
