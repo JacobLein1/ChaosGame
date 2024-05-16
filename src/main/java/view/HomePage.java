@@ -3,6 +3,7 @@ package view;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -20,9 +21,6 @@ public class HomePage extends Application{
      * Instantiates a new Home page.
      */
     public HomePage(){
-        HBox bottom = new HBox();
-        bottom.setPrefSize(50, 50);
-        root.setBottom(bottom);
         setMenu();
     }
 
@@ -42,7 +40,6 @@ public class HomePage extends Application{
      * Set menu.
      */
     public void setMenu(){
-        Label header = new Label("Home");
         String[] fractals = {"Affine2D", "Barnsley", "Julia", "Create new Affine transformation", "Create new Barnsley transformation", "Upload from files"};
         fractalType = new ComboBox<>(FXCollections.observableArrayList(fractals));
 
@@ -55,12 +52,16 @@ public class HomePage extends Application{
             }
         });
 
-        HBox menu = new HBox(header, fractalType, chooseFractal);
+        HBox menu = new HBox(fractalType, chooseFractal);
         menu.setSpacing(50);
-        HBox.setMargin(header, new Insets(20, 20, 10, 10));
         HBox.setMargin(fractalType, new Insets(20, 10, 10, 20));
         HBox.setMargin(chooseFractal, new Insets(20, 10, 10, 20));
-        root.setTop(menu);
+        root.setCenter(menu);
+        BorderPane.setAlignment(menu, Pos.CENTER);
+
+        Label header = new Label("Chaos Game");
+        root.setTop(header);
+        BorderPane.setAlignment(header, Pos.CENTER);
     }
 
     /**
