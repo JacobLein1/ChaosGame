@@ -16,9 +16,10 @@ public class ChaosGame implements ChaosGameObserver{
     public ChaosGame(ChaosGameDescription chaosGameDescription, int width, int height){
         this.description = chaosGameDescription;
         this.canvas = new ChaosCanvas(width, height, chaosGameDescription.getMinCoords(), chaosGameDescription.getMaxCoords());
-        this.currentPoint = new Vector2D(chaosGameDescription.getMinCoords().getX0(), chaosGameDescription.getMinCoords().getX1());
+        this.currentPoint = new Vector2D(0,0);
         this.random = new Random();
     }
+
     public ChaosCanvas getCanvas(){
         return canvas;
     }
