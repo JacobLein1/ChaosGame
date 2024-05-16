@@ -44,8 +44,8 @@ public class ChaosGameDescriptionFactory {
         return new ChaosGameDescription(minCoords, maxCoords, affineTransformations);
     }
     public static ChaosGameDescription barnsley(){
-        minCoords = new Vector2D(-2.1820, 0);
-        maxCoords = new Vector2D(2.6558, 9.9983);
+        minCoords = new Vector2D(-2.65, 0);
+        maxCoords = new Vector2D(2.65, 10);
         AffineTransform2D affineTransform2D1 = new AffineTransform2D(new Matrix2x2(0,0,0,0.16), new Vector2D(0,0));
         AffineTransform2D affineTransform2D2 = new AffineTransform2D(new Matrix2x2(0.85,0.04,-0.04,0.85), new Vector2D(0,1.6));
         AffineTransform2D affineTransform2D3 = new AffineTransform2D(new Matrix2x2(0.2,-0.26,0.23,0.22), new Vector2D(0,1.6));
@@ -60,8 +60,8 @@ public class ChaosGameDescriptionFactory {
     }
 
     public static ChaosGameDescription julia(){
-        minCoords = new Vector2D(-1.7, -1);
-        maxCoords = new Vector2D(1.7, 1.1);
+        minCoords = new Vector2D(-1.6, -1);
+        maxCoords = new Vector2D(1.6, 1.1);
 
         Complex complexNumberC = new Complex(-0.74543, 0.11301);
         JuliaTransform juliaTransformPositive = new JuliaTransform(complexNumberC,1);
