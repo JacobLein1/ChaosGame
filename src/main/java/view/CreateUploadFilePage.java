@@ -24,6 +24,7 @@ import java.io.File;
  * The type Upload file page.
  */
 public class CreateUploadFilePage extends Fractal {
+
     private final ChaosGameFileHandler chaosGameFileHandler = new ChaosGameFileHandler();
     private final int width = 500;
     private final int height = 600;
