@@ -23,13 +23,28 @@ public class Fractal extends Application {
     private ChaosGameDescription chaosGameDescription;
     private int width;
     private int height;
+    private Button showFractal;
+    private Button home;
 
     public void setMenu(){
         Label numberLabel = new Label("Number of steps:");
 
         stepsBox = new TextField();
 
-        Button showFractal = new Button("Show");
+        showFractal = new Button("Show");
+
+        home = new Button("Home");
+
+        HBox menu = new HBox(numberLabel, stepsBox, showFractal, home);
+        HBox.setMargin(numberLabel, new Insets(20, 20, 10, 10));
+        HBox.setMargin(stepsBox, new Insets(20, 10, 20, 10));
+        HBox.setMargin(showFractal, new Insets(20, 10, 10, 20));
+        HBox.setMargin(home, new Insets(20, 10, 10, 20));
+
+        root.setTop(menu);
+    }
+
+    public void buttonsOnAction(){
         showFractal.setOnAction(actionEvent -> {
             try {
                 chaosGame = new ChaosGame(chaosGameDescription, width, height);
@@ -39,19 +54,11 @@ public class Fractal extends Application {
             displayFractal();
         });
 
-        Button home = new Button("Home");
         home.setOnAction(actionEvent -> {
             HomePage homePage = new HomePage();
             homePage.start(stage);
         });
 
-        HBox menu = new HBox(numberLabel, stepsBox, showFractal, home);
-        HBox.setMargin(numberLabel, new Insets(20, 20, 10, 10));
-        HBox.setMargin(stepsBox, new Insets(20, 10, 20, 10));
-        HBox.setMargin(showFractal, new Insets(20, 10, 10, 20));
-        HBox.setMargin(home, new Insets(20, 10, 10, 20));
-
-        root.setTop(menu);
     }
 
     public void displayFractal(){
@@ -66,6 +73,10 @@ public class Fractal extends Application {
 
     public BorderPane getRoot() {
         return root;
+    }
+
+    public void setChaosGame(ChaosGame chaosGame){
+        this.chaosGame = chaosGame;
     }
 
     public void setChaosGameDescription(ChaosGameDescription chaosGameDescription) {

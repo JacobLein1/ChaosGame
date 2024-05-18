@@ -20,6 +20,7 @@ public class CreateFractal extends Fractal{
 
     public void setNewTransformationMenu(){
         setMenu();
+        buttonsOnAction();
         Label matrixLabel = new Label("Matrix");
         TextField matrix00 = new TextField();
         TextField matrix01 = new TextField();

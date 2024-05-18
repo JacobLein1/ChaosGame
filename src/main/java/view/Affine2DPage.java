@@ -16,5 +16,6 @@ public class Affine2DPage extends Fractal {
         setChaosGameDescription(ChaosGameDescriptionFactory.get("Affine2D"));
 
         setMenu();
+        buttonsOnAction();
     }
 }
