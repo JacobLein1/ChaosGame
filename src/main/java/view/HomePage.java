@@ -1,11 +1,16 @@
 package view;
 
+import controller.ChaosGame;
+import controller.ChaosGameDescription;
+import controller.ChaosGameDescriptionFactory;
+import controller.FractalDisplayObserver;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
@@ -40,7 +45,7 @@ public class HomePage extends Application{
      * Set menu.
      */
     public void setMenu(){
-        String[] fractals = {"Affine2D", "Barnsley", "Julia", "Create new Affine transformation", "Create new Barnsley transformation", "Upload from files"};
+        String[] fractals = {"Affine2D", "Barnsley", "Julia", "Create new Affine transformation", "Create new Barnsley transformation", "Create new Julia transformation", "Upload from files"};
         fractalType = new ComboBox<>(FXCollections.observableArrayList(fractals));
 
         Button chooseFractal = new Button("Choose fractal");
@@ -73,14 +78,17 @@ public class HomePage extends Application{
         if(fractalType.getValue().equals("Julia")){
             JuliaPage juliaPage = new JuliaPage();
             juliaPage.start(homeStage);
+            //showFractalPage(ChaosGameDescriptionFactory.get("Julia"));
         }
         if(fractalType.getValue().equals("Affine2D")){
             Affine2DPage affine2DPage = new Affine2DPage();
             affine2DPage.start(homeStage);
+            //showFractalPage(ChaosGameDescriptionFactory.get("Affine2D"));
         }
         if(fractalType.getValue().equals("Barnsley")){
             BarnsleyPage barnsleyPage = new BarnsleyPage();
             barnsleyPage.start(homeStage);
+            //showFractalPage(ChaosGameDescriptionFactory.get("Barnsley"));
         }
         if(fractalType.getValue().equals("Create new Affine transformation")){
             CreateAffinePage createAffinePage = new CreateAffinePage();
@@ -91,11 +99,28 @@ public class HomePage extends Application{
             createBarnsleyPage.start(homeStage);
         }
         if (fractalType.getValue().equals("Upload from files")) {
-            CreateUploadFilePage uploadPage = new CreateUploadFilePage();
+            UploadFilePage uploadPage = new UploadFilePage();
             uploadPage.start(homeStage);
+        }
+        if(fractalType.getValue().equals("Create new Julia transformation")){
+            CreateJuliaPage createJuliaPage = new CreateJuliaPage();
+            createJuliaPage.start(homeStage);
         }
     }
 
+    private void showFractalPage(ChaosGameDescription chaosGameDescription){
+        ChaosGame chaosGame = new ChaosGame(chaosGameDescription, 800, 600);
+        InitializeChaosGame initializeChaosGame = new InitializeChaosGame(chaosGame, 100000, 800, 600);
+
+        ImageView image = initializeChaosGame.createFractalDisplay();
+        FractalDisplayObserver fractalDisplayObserver = new FractalDisplayObserver(initializeChaosGame, image);
+        chaosGame.attach(fractalDisplayObserver);
+
+        VBox fractalRoot = new VBox(image);
+        Scene fractalScene = new Scene(fractalRoot, 800, 600);
+        homeStage.setScene(fractalScene);
+        homeStage.show();
+    }
     /**
      * The entry point of application.
      *
