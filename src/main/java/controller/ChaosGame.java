@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Observer;
 import java.util.Random;
 
-public class ChaosGame implements ChaosGameObserver{
+public class ChaosGame extends ChaosGameObservable {
     private ChaosCanvas canvas;
     private ChaosGameDescription description;
     private Vector2D currentPoint;
@@ -32,9 +32,5 @@ public class ChaosGame implements ChaosGameObserver{
         }
     }
 
-    @Override
-    public void updateGame() {
-        //runSteps(10000);
-    }
 
 }
