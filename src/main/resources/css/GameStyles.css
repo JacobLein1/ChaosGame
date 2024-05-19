@@ -1,0 +1,30 @@
+.background{
+    -fx-background-color: #FFF8DC;
+}
+
+.menu-background {
+    -fx-background-color: #4169E1;
+}
+
+.menu-button {
+    -fx-background-color: #A6B9F1;
+    -fx-font: arial;
+    -fx-font-size: 12px;
+}
+
+.sidebar-button{
+    -fx-background-color: #A6B9F1;
+}
+
+.homepage-header {
+    -fx-text-fill: #4169E1;
+    -fx-font-size: 30px;
+    -fx-alignment: center;
+}
+
+.menu-label {
+    -fx-text-fill: #FFF8DC;
+    -fx-font-size: 16px;
+    -fx-font: arial;
+}
+

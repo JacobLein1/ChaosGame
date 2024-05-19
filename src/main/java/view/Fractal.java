@@ -10,7 +10,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -28,20 +27,17 @@ public class Fractal extends Application {
 
     public void setMenu(){
         Label numberLabel = new Label("Number of steps:");
+        numberLabel.getStyleClass().add("menu-label");
 
         stepsBox = new TextField();
+        stepsBox.getStyleClass().add("menu-button");
 
-        Button showFractal = new Button("Show");
-        showFractal.setOnAction(actionEvent -> {
-            try {
-                chaosGame = new ChaosGame(chaosGameDescription, width, height);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-            displayFractal();
-        });
+        showFractal = new Button("Show");
+        showFractal.getStyleClass().add("menu-button");
 
-        Button home = new Button("Home");
+        home = new Button("Home");
+        home.getStyleClass().add("menu-button");
+
         home.setOnAction(actionEvent -> {
             HomePage homePage = new HomePage();
             homePage.start(stage);
@@ -52,8 +48,21 @@ public class Fractal extends Application {
         HBox.setMargin(stepsBox, new Insets(20, 10, 20, 10));
         HBox.setMargin(showFractal, new Insets(20, 10, 10, 20));
         HBox.setMargin(home, new Insets(20, 10, 10, 20));
+        menu.getStyleClass().add("menu-background");
 
         root.setTop(menu);
+        root.getStyleClass().add("background");
+    }
+
+    public void showFractalOnAction(){
+        showFractal.setOnAction(actionEvent -> {
+            try {
+                chaosGame = new ChaosGame(chaosGameDescription, width, height);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+            displayFractal();
+        });
     }
 
     public void displayFractal(){
@@ -68,6 +77,10 @@ public class Fractal extends Application {
 
     public BorderPane getRoot() {
         return root;
+    }
+
+    public void setChaosGame(ChaosGame chaosGame){
+        this.chaosGame = chaosGame;
     }
 
     public void setChaosGameDescription(ChaosGameDescription chaosGameDescription) {
@@ -86,6 +99,7 @@ public class Fractal extends Application {
     public void start(Stage stage){
         this.stage = stage;
         Scene scene = new Scene(root, 1000, 800);
+        scene.getStylesheets().add("/css/GameStyles.css");
 
         stage.setTitle(pageTitle);
         stage.setScene(scene);

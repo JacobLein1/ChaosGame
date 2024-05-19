@@ -11,5 +11,6 @@ public class JuliaPage extends Fractal {
         setChaosGameDescription(ChaosGameDescriptionFactory.get("Julia"));
 
         setMenu();
+        showFractalOnAction();
     }
 }
