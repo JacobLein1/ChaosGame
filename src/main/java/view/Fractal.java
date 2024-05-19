@@ -23,8 +23,6 @@ public class Fractal extends Application {
     private ChaosGameDescription chaosGameDescription;
     private int width;
     private int height;
-    private Button showFractal;
-    private Button home;
     private FractalDisplayObserver fractalDisplayObserver;
 
     public void setMenu(){

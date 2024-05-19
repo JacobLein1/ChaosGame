@@ -4,6 +4,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -138,5 +139,4 @@ public class CreateFractal extends Fractal{
     /*private boolean isWithinRange(double real, double imag) {
         return real >= -2 && real <= 2 && imag >= -2 && imag <= 2;
     }*/
-
 }

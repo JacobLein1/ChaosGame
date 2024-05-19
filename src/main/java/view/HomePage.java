@@ -1,11 +1,16 @@
 package view;
 
+import controller.ChaosGame;
+import controller.ChaosGameDescription;
+import controller.ChaosGameDescriptionFactory;
+import controller.FractalDisplayObserver;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
@@ -101,6 +106,10 @@ public class HomePage extends Application{
         if (fractalType.getValue().equals("Upload from files")) {
             UploadFilePage uploadPage = new UploadFilePage();
             uploadPage.start(homeStage);
+        }
+        if(fractalType.getValue().equals("Create new Julia transformation")){
+            CreateJuliaPage createJuliaPage = new CreateJuliaPage();
+            createJuliaPage.start(homeStage);
         }
     }
 
