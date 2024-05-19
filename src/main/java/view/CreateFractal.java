@@ -4,11 +4,10 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import model.AffineTransform2D;
-import model.Matrix2x2;
-import model.Transform2D;
-import model.Vector2D;
+import javafx.scene.text.Text;
+import model.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,7 +68,75 @@ public class CreateFractal extends Fractal{
         getRoot().setLeft(newTransformationMenu);
     }
 
+    public void setNewJuliaTransformationMenu(){
+        setMenu();
+        Label realLabel = new Label("Real part");
+        VBox realPartBox = new VBox();
+
+        Text errorTextReal = new Text();
+        HBox reaPartTextFieldBox = new HBox();
+        TextField realPart = new TextField();
+        reaPartTextFieldBox.getChildren().addAll(realPart,errorTextReal);
+
+        Text savedRealPart = new Text("No saved real part");
+        realPart.setPromptText("Real part");
+        realPartBox.getChildren().addAll(reaPartTextFieldBox, savedRealPart);
+
+        Label imaginaryLabel = new Label("Imaginary part");
+        VBox imaginaryPartBox = new VBox();
+
+        TextField imaginaryPart = new TextField();
+        HBox imaginaryPartTextFieldBox = new HBox();
+        Text errorTextImaginary = new Text();
+        imaginaryPartTextFieldBox.getChildren().addAll(imaginaryPart, errorTextImaginary);
+        Text savedImaginaryPart = new Text("No saved imaginary part");
+        imaginaryPart.setPromptText("Imaginary part");
+        imaginaryPartBox.getChildren().addAll(imaginaryPart, savedImaginaryPart);
+
+        Button saveTransformation = new Button("Save complex constant");
+        saveTransformation.setOnAction(actionEvent -> {
+            /*if (!isWithinRange(Double.parseDouble(realPart.getText()), Double.parseDouble(imaginaryPart.getText()))) {
+                realPart.clear();
+                imaginaryPart.clear();
+
+                return;
+            }*/
+            JuliaTransform juliaTransformPos = new JuliaTransform(
+                    new Complex(
+                            Double.parseDouble(realPart.getText()),
+                            Double.parseDouble(imaginaryPart.getText())),
+                    1);
+            JuliaTransform juliaTransformNeg = new JuliaTransform(
+                    new Complex(
+                            Double.parseDouble(realPart.getText()),
+                            Double.parseDouble(imaginaryPart.getText())),
+                    -1);
+            newTransformations.add(juliaTransformPos);
+            newTransformations.add(juliaTransformNeg);
+            savedRealPart.setText("Saved real part: " + realPart.getText());
+            savedImaginaryPart.setText("Saved imaginary part: " + imaginaryPart.getText());
+            realPart.clear();
+            imaginaryPart.clear();
+
+
+        });
+        VBox newTransformationMenu = new VBox(
+                realLabel, realPartBox,
+                imaginaryLabel, imaginaryPartBox,
+                saveTransformation);
+        newTransformationMenu.setSpacing(5);
+        newTransformationMenu.setPadding(new Insets(0, 0, 0, 10));
+        VBox.setMargin(imaginaryPart, new Insets(5,0,15, 0));
+        VBox.setMargin(realPart, new Insets(5,0,15, 0));
+        VBox.setMargin(saveTransformation, new Insets(5,0,15, 0));
+        getRoot().setLeft(newTransformationMenu);
+
+    }
     public List<Transform2D> getNewTransformations() {
         return newTransformations;
     }
+    /*private boolean isWithinRange(double real, double imag) {
+        return real >= -2 && real <= 2 && imag >= -2 && imag <= 2;
+    }*/
+
 }

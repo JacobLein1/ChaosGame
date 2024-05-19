@@ -25,6 +25,7 @@ public class Fractal extends Application {
     private Button showFractal;
     private Button home;
 
+
     public void setMenu(){
         Label numberLabel = new Label("Number of steps:");
         numberLabel.getStyleClass().add("menu-label");
