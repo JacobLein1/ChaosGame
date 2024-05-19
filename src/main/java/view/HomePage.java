@@ -41,7 +41,7 @@ public class HomePage extends Application{
      * Set menu.
      */
     public void setMenu(){
-        String[] fractals = {"Affine2D", "Barnsley", "Julia", "Create new Affine transformation", "Create new Barnsley transformation", "Upload from files"};
+        String[] fractals = {"Affine2D", "Barnsley", "Julia", "Create new Affine transformation", "Create new Barnsley transformation", "Create new Julia transformation", "Upload from files"};
         fractalType = new ComboBox<>(FXCollections.observableArrayList(fractals));
         fractalType.getStyleClass().add("menu-button");
 
@@ -99,7 +99,7 @@ public class HomePage extends Application{
             createBarnsleyPage.start(homeStage);
         }
         if (fractalType.getValue().equals("Upload from files")) {
-            CreateUploadFilePage uploadPage = new CreateUploadFilePage();
+            UploadFilePage uploadPage = new UploadFilePage();
             uploadPage.start(homeStage);
         }
     }
