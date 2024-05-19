@@ -57,6 +57,7 @@ public class CreateUploadFilePage extends Fractal {
         Text fileText = new Text("No file selected");
         openFileBox.getChildren().addAll(openFile, fileText);
         openFileBox.setPadding(new Insets(20, 10, 10, 20));
+        VBox.setMargin(fileText, new Insets(10,0,0,0));
 
         openFile.setOnAction(actionEvent -> {
             FileChooser fileChooser = new FileChooser();
