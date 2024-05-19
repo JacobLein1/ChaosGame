@@ -2,6 +2,7 @@ package view;
 
 import controller.ChaosGame;
 import controller.ChaosGameDescription;
+import controller.FractalDisplayObserver;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -23,6 +24,7 @@ public class Fractal extends Application {
     private ChaosGameDescription chaosGameDescription;
     private int width;
     private int height;
+    private FractalDisplayObserver fractalDisplayObserver;
 
     public void setMenu(){
         Label numberLabel = new Label("Number of steps:");
@@ -55,9 +57,9 @@ public class Fractal extends Application {
     }
 
     public void displayFractal(){
-        InitializeChaosGame initializeChaosGame = new InitializeChaosGame(chaosGame, Integer.parseInt(stepsBox.getText()), width, height);
-        ImageView image = initializeChaosGame.createFractalDisplay();
-        root.setCenter(image);
+        fractalDisplayObserver = new FractalDisplayObserver(chaosGame, Integer.parseInt(stepsBox.getText()), width, height);
+        fractalDisplayObserver.updateGame();
+        root.setCenter(fractalDisplayObserver.getFractalImageView());
     }
 
     public void setPageTitle(String pageTitle) {

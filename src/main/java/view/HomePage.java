@@ -78,17 +78,14 @@ public class HomePage extends Application{
         if(fractalType.getValue().equals("Julia")){
             JuliaPage juliaPage = new JuliaPage();
             juliaPage.start(homeStage);
-            //showFractalPage(ChaosGameDescriptionFactory.get("Julia"));
         }
         if(fractalType.getValue().equals("Affine2D")){
             Affine2DPage affine2DPage = new Affine2DPage();
             affine2DPage.start(homeStage);
-            //showFractalPage(ChaosGameDescriptionFactory.get("Affine2D"));
         }
         if(fractalType.getValue().equals("Barnsley")){
             BarnsleyPage barnsleyPage = new BarnsleyPage();
             barnsleyPage.start(homeStage);
-            //showFractalPage(ChaosGameDescriptionFactory.get("Barnsley"));
         }
         if(fractalType.getValue().equals("Create new Affine transformation")){
             CreateAffinePage createAffinePage = new CreateAffinePage();
@@ -108,19 +105,6 @@ public class HomePage extends Application{
         }
     }
 
-    private void showFractalPage(ChaosGameDescription chaosGameDescription){
-        ChaosGame chaosGame = new ChaosGame(chaosGameDescription, 800, 600);
-        InitializeChaosGame initializeChaosGame = new InitializeChaosGame(chaosGame, 100000, 800, 600);
-
-        ImageView image = initializeChaosGame.createFractalDisplay();
-        FractalDisplayObserver fractalDisplayObserver = new FractalDisplayObserver(initializeChaosGame, image);
-        chaosGame.attach(fractalDisplayObserver);
-
-        VBox fractalRoot = new VBox(image);
-        Scene fractalScene = new Scene(fractalRoot, 800, 600);
-        homeStage.setScene(fractalScene);
-        homeStage.show();
-    }
     /**
      * The entry point of application.
      *

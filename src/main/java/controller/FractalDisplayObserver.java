@@ -6,16 +6,13 @@ import view.InitializeChaosGame;
 
 public class FractalDisplayObserver implements ChaosGameObserver{
     private final InitializeChaosGame initializeChaosGame;
-    private final ImageView fractalImageView;
-    public FractalDisplayObserver(InitializeChaosGame initializeChaosGame, ImageView imageView){
-        this.initializeChaosGame = initializeChaosGame;
-        this.fractalImageView = imageView;
+    private ImageView fractalImageView = new ImageView();
+    public FractalDisplayObserver(ChaosGame chaosGame, int steps, int width, int height){
+        this.initializeChaosGame = new InitializeChaosGame(chaosGame, steps, width, height);
     }
     @Override
     public void updateGame() {
-        Platform.runLater(() -> {
-            fractalImageView.setImage(initializeChaosGame.createFractalDisplay().getImage());
-        });
+        fractalImageView = initializeChaosGame.createFractalDisplay();
     }
     public ImageView getFractalImageView() {
         return fractalImageView;
