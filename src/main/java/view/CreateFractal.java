@@ -1,11 +1,9 @@
 package view;
 
-import controller.ChaosGameDescription;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import model.AffineTransform2D;
 import model.Matrix2x2;
@@ -20,7 +18,7 @@ public class CreateFractal extends Fractal{
 
     public void setNewTransformationMenu(){
         setMenu();
-        buttonsOnAction();
+        showFractalOnAction();
         Label matrixLabel = new Label("Matrix");
         TextField matrix00 = new TextField();
         TextField matrix01 = new TextField();

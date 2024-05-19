@@ -17,6 +17,6 @@ public class BarnsleyPage extends Fractal{
         setChaosGameDescription(ChaosGameDescriptionFactory.get("Barnsley"));
 
         setMenu();
-        buttonsOnAction();
+        showFractalOnAction();
     }
 }
