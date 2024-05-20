@@ -9,13 +9,13 @@ public class CreateBarnsleyPage extends CreateFractal {
         setPageTitle("Create Barnsley transformation");
         setWidth(500);
         setHeight(600);
+
         setChaosGameDescription(
                 new ChaosGameDescription(
                         new Vector2D(-2.1820, 0),
                         new Vector2D(2.6558, 9.9983),
                         getNewTransformations())
         );
-
         setNewTransformationMenu();
         showFractalOnAction();
     }

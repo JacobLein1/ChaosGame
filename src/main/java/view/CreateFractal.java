@@ -63,7 +63,7 @@ public class CreateFractal extends Fractal{
             vectorX1.clear();
         });
 
-        ChaosGameDescription chaosGameDescription = new ChaosGameDescription(new Vector2D(0, 0), new Vector2D(1, 1), newTransformations);
+
         VBox saveAsFileBox = new VBox();
         fileText = new Text("No path selected");
         Button saveAsFile = new Button("Save as file");
@@ -73,7 +73,7 @@ public class CreateFractal extends Fractal{
 
         saveAsFile.setOnAction(actionEvent -> {
             try {
-                if (chaosGameDescription == null) {
+                if (getChaosGameDescription() == null) {
                     throw new IllegalArgumentException("No transformation to save");
                 }else {
                     //User selects file path
@@ -85,7 +85,7 @@ public class CreateFractal extends Fractal{
                         fileText.setText(file.getAbsolutePath());
                         System.out.println("Path chosen");
 
-                        chaosGameFileHandler.writeToFile(chaosGameDescription, file.getAbsolutePath());
+                        chaosGameFileHandler.writeToFile(getChaosGameDescription(), file.getAbsolutePath());
                         fileText.setText("File saved to " + fileText.getText());
                     }
                     else {
@@ -115,34 +115,6 @@ public class CreateFractal extends Fractal{
      */
     public void setNewJuliaTransformationMenu(){
         setMenu();
-
-        /**
-        VBox minCoordsBox = new VBox();
-        Label minCoordsLabel = new Label("Min coords:");
-
-        Text savedMinCoords = new Text();
-        TextField minCoordsX0 = new TextField();
-        TextField minCoordsX1 = new TextField();
-        minCoordsX0.setPromptText("X0");
-        minCoordsX1.setPromptText("X1");
-
-        minCoordsBox.getChildren().addAll(minCoordsLabel, minCoordsX0, minCoordsX1, savedMinCoords);
-
-        Label maxCoordsLabel = new Label("Max coords:");
-        VBox maxCoordsBox = new VBox();
-        Text savedMaxCoords = new Text();
-        TextField maxCoordsX0 = new TextField();
-        TextField maxCoordsX1 = new TextField();
-        maxCoordsX0.setPromptText("X0");
-        maxCoordsX1.setPromptText("X1");
-
-        maxCoordsBox.getChildren().addAll(maxCoordsLabel, maxCoordsX0, maxCoordsX1, savedMaxCoords);
-
-        Label coordsLabel = new Label("Coordinates");
-        VBox coordsBox = new VBox();
-        coordsBox.setSpacing(5);
-        coordsBox.getChildren().addAll(minCoordsBox, maxCoordsBox);
-        */
 
         Label realLabel = new Label("Real part");
         VBox realPartBox = new VBox();
@@ -184,25 +156,47 @@ public class CreateFractal extends Fractal{
             newTransformations.add(juliaTransformNeg);
             savedRealPart.setText("Saved real part: " + realPart.getText());
             savedImaginaryPart.setText("Saved imaginary part: " + imaginaryPart.getText());
-            //savedMinCoords.setText("Saved min coords: " + minCoordsX0.getText() + ", " + minCoordsX1.getText());
-            //savedMaxCoords.setText("Saved max coords: " + maxCoordsX0.getText() + ", " + maxCoordsX1.getText());
             System.out.println("HER");
-            //minCoords = new Vector2D(Double.parseDouble(minCoordsX0.getText()), Double.parseDouble(minCoordsX1.getText()));
-            //maxCoords = new Vector2D(Double.parseDouble(maxCoordsX0.getText()), Double.parseDouble(maxCoordsX1.getText()));
 
             realPart.clear();
             imaginaryPart.clear();
-            //minCoordsX0.clear();
-            //minCoordsX1.clear();
-            //maxCoordsX0.clear();
-            //maxCoordsX1.clear();
 
         });
-        /**VBox newTransformationMenu = new VBox(
-                coordsLabel, coordsBox ,realLabel, realPartBox,
-                imaginaryLabel, imaginaryPartBox,
-                saveTransformation);
-         */
+
+        VBox saveAsFileBox = new VBox();
+        fileText = new Text("No path selected");
+        Button saveAsFile = new Button("Save as file");
+        saveAsFileBox.getChildren().addAll(saveAsFile, fileText);
+        saveAsFileBox.setPadding(new Insets(20, 10, 10, 20));
+
+
+        saveAsFile.setOnAction(actionEvent -> {
+            try {
+                if (getChaosGameDescription() == null) {
+                    throw new IllegalArgumentException("No transformation to save");
+                }else {
+                    //User selects file path
+                    FileChooser fileChooser = new FileChooser();
+                    fileChooser.setTitle("Save Transformation File");
+                    File file = fileChooser.showSaveDialog(null);
+
+                    if (file != null) {
+                        fileText.setText(file.getAbsolutePath());
+                        System.out.println("Path chosen");
+
+                        chaosGameFileHandler.writeToFile(getChaosGameDescription(), file.getAbsolutePath());
+                        fileText.setText("File saved to " + fileText.getText());
+                    }
+                    else {
+                        fileText.setText("No path selected");
+                    }
+                }
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+
         VBox newTransformationMenu = new VBox(
                 realLabel, realPartBox,
                 imaginaryLabel, imaginaryPartBox,
@@ -220,13 +214,5 @@ public class CreateFractal extends Fractal{
         return newTransformations;
     }
 
-    /**
-    public Vector2D getMinCoords() {
-        return minCoords;
-    }
-    public Vector2D getMaxCoords() {
-        return maxCoords;
-    }
-     */
 
 }

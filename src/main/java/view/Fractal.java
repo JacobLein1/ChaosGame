@@ -123,6 +123,10 @@ public class Fractal extends Application {
         this.chaosGame = chaosGame;
     }
 
+    public ChaosGameDescription getChaosGameDescription() {
+        return chaosGameDescription;
+    }
+
     public void setChaosGameDescription(ChaosGameDescription chaosGameDescription) {
         this.chaosGameDescription = chaosGameDescription;
     }
