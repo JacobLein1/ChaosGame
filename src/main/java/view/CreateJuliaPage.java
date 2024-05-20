@@ -11,8 +11,8 @@ public class CreateJuliaPage extends CreateFractal{
             setHeight(600);
             setChaosGameDescription(
                     new ChaosGameDescription(
-                            new Vector2D(-1.6, -1),
-                            new Vector2D(1.6, 1),
+                            getMinCoords(),
+                            getMaxCoords(),
                             getNewTransformations()
             ));
 

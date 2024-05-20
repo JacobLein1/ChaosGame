@@ -35,6 +35,7 @@ public class Fractal extends Application {
     private TextField maxCoordX0;
     private TextField maxCoordX1;
     private FractalDisplayObserver fractalDisplayObserver;
+    private Button showFractal;
 
     public void setMenu(){
         Label numberLabel = new Label("Number of steps:");
