@@ -48,11 +48,9 @@ public class HomePage extends Application{
     public void setMenu(){
         String[] fractals = {"Affine2D", "Barnsley", "Julia", "Create new Affine transformation", "Create new Barnsley transformation", "Create new Julia transformation", "Upload from files"};
         fractalType = new ComboBox<>(FXCollections.observableArrayList(fractals));
-        fractalType.getStyleClass().add("menu-button");
-
+        Label header = new Label("Chaos Game");
         Button chooseFractal = new Button("Choose fractal");
-        chooseFractal.setPrefSize(100, 50);
-        chooseFractal.getStyleClass().add("menu-button");
+
         chooseFractal.setOnAction(actionEvent -> {
             try {
                 chooseFractalOnAction();
@@ -61,18 +59,22 @@ public class HomePage extends Application{
             }
         });
 
+        fractalType.setPrefHeight(30);
+        fractalType.getStyleClass().add("menu-combobox");
+        chooseFractal.getStyleClass().add("big-home-button");
+        header.getStyleClass().add("homepage-header");
+
         HBox menu = new HBox(fractalType, chooseFractal);
-        menu.setSpacing(50);
+        menu.setSpacing(30);
+        menu.setAlignment(Pos.CENTER);
         HBox.setMargin(fractalType, new Insets(20, 10, 10, 20));
         HBox.setMargin(chooseFractal, new Insets(20, 10, 10, 20));
 
-        Label header = new Label("Chaos Game");
-        header.getStyleClass().add("homepage-header");
-
         VBox center = new VBox(header, menu);
-        BorderPane.setAlignment(center, Pos.CENTER);
+        center.setAlignment(Pos.CENTER);
+
         root.setCenter(center);
-        //BorderPane.setAlignment(header, Pos.CENTER);
+
 
         root.getStyleClass().add("background");
     }

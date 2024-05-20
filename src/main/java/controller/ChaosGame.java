@@ -31,6 +31,4 @@ public class ChaosGame extends ChaosGameObservable {
             canvas.putPixel(currentPoint);
         }
     }
-
-
 }
