@@ -1,5 +1,6 @@
 package view;
 
+import controller.ChaosGame;
 import controller.ChaosGameDescription;
 import controller.ChaosGameFileHandler;
 import javafx.geometry.Insets;
@@ -18,9 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CreateFractal extends Fractal{
-    private final List<Transform2D> newTransformations = new ArrayList<>();
-    //private Vector2D minCoords = new Vector2D(0,0);
-    //private Vector2D maxCoords = new Vector2D(1,1);
+    private List<Transform2D> newTransformations = new ArrayList<>();
     private final ChaosGameFileHandler chaosGameFileHandler = new ChaosGameFileHandler();
     private Text fileText;
 
@@ -208,6 +207,20 @@ public class CreateFractal extends Fractal{
         VBox.setMargin(saveTransformation, new Insets(5,0,15, 0));
         getRoot().setLeft(newTransformationMenu);
 
+    }
+
+    public void showFractalOnActionCreate(){
+        getShowFractal().setOnAction(actionEvent -> {
+            getChaosGameDescription().setMinCoords(getMinCoords());
+            getChaosGameDescription().setMaxCoords(getMaxCoords());
+            try {
+                setChaosGame(new ChaosGame(getChaosGameDescription(), getWidth(), getHeight()));
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+            displayFractal();
+            newTransformations.clear();
+        });
     }
 
     public List<Transform2D> getNewTransformations() {

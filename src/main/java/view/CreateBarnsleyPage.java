@@ -17,6 +17,6 @@ public class CreateBarnsleyPage extends CreateFractal {
                         getNewTransformations())
         );
         setNewTransformationMenu();
-        showFractalOnAction();
+        showFractalOnActionCreate();
     }
 }

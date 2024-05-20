@@ -19,6 +19,6 @@ public class CreateAffinePage extends CreateFractal {
         );
 
         setNewTransformationMenu();
-        showFractalOnAction();
+        showFractalOnActionCreate();
     }
 }

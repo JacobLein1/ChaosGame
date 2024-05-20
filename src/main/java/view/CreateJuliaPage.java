@@ -17,6 +17,6 @@ public class CreateJuliaPage extends CreateFractal{
             ));
 
             setNewJuliaTransformationMenu();
-            showFractalOnAction();
+            showFractalOnActionCreate();
         }
 }
