@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CreateFractal extends Fractal{
-    private final List<Transform2D> newTransformations = new ArrayList<>();
+    private List<Transform2D> newTransformations = new ArrayList<>();
 
     public void setNewTransformationMenu(){
         setMenu();
@@ -136,6 +136,11 @@ public class CreateFractal extends Fractal{
     public List<Transform2D> getNewTransformations() {
         return newTransformations;
     }
+
+    public void setNewTransformations(List<Transform2D> newTransformations) {
+        this.newTransformations = newTransformations;
+    }
+
     /*private boolean isWithinRange(double real, double imag) {
         return real >= -2 && real <= 2 && imag >= -2 && imag <= 2;
     }*/

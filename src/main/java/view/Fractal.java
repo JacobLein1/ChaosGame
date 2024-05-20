@@ -54,7 +54,7 @@ public class Fractal extends Application {
         maxCoordX1.setPromptText("X1");
 
         numberLabel.getStyleClass().add("menu-label");
-        steps.getStyleClass().add("menu-button");
+        steps.getStyleClass().add("steps-button");
         showFractal.getStyleClass().add("big-menu-button");
         home.getStyleClass().add("big-menu-button");
         minCoordLabel.getStyleClass().add("menu-label");
@@ -140,11 +140,11 @@ public class Fractal extends Application {
     }
 
     public Vector2D getMinVector(){
-        return new Vector2D(Integer.parseInt(minCoordX0.getText()), Integer.parseInt(minCoordX1.getText()));
+        return new Vector2D(Double.parseDouble(minCoordX0.getText()), Double.parseDouble(minCoordX1.getText()));
     }
 
     public Vector2D getMaxVector(){
-        return new Vector2D(Integer.parseInt(maxCoordX0.getText()), Integer.parseInt(maxCoordX1.getText()));
+        return new Vector2D(Double.parseDouble(maxCoordX0.getText()), Double.parseDouble(maxCoordX1.getText()));
     }
 
     @Override
