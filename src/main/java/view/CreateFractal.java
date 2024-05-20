@@ -22,6 +22,7 @@ public class CreateFractal extends Fractal{
     private List<Transform2D> newTransformations = new ArrayList<>();
     private final ChaosGameFileHandler chaosGameFileHandler = new ChaosGameFileHandler();
     private Text fileText;
+    private Button saveAsFile;
 
 
     public void setNewTransformationMenu(){
@@ -41,8 +42,18 @@ public class CreateFractal extends Fractal{
         TextField vectorX0 = new TextField();
         vectorX0.setPromptText("X0");
         vectorX1.setPromptText("X1");
-
         Button saveTransformation = new Button("Save transformation");
+
+        matrixLabel.getStyleClass().add("sidebar-label");
+        matrix00.getStyleClass().add("menu-field");
+        matrix01.getStyleClass().add("menu-field");
+        matrix10.getStyleClass().add("menu-field");
+        matrix11.getStyleClass().add("menu-field");
+        vectorLabel.getStyleClass().add("sidebar-label");
+        vectorX0.getStyleClass().add("menu-field");
+        vectorX1.getStyleClass().add("menu-field");
+        saveTransformation.getStyleClass().add("big-sidebar-button");
+
         saveTransformation.setOnAction(actionEvent -> {
             AffineTransform2D affineTransform2D = new AffineTransform2D(
                     new Matrix2x2(
@@ -62,40 +73,13 @@ public class CreateFractal extends Fractal{
             vectorX1.clear();
         });
 
-
         VBox saveAsFileBox = new VBox();
         fileText = new Text("No path selected");
-        Button saveAsFile = new Button("Save as file");
+        saveAsFile = new Button("Save as file");
         saveAsFileBox.getChildren().addAll(saveAsFile, fileText);
-        saveAsFileBox.setPadding(new Insets(20, 10, 10, 20));
-
-
-        saveAsFile.setOnAction(actionEvent -> {
-            try {
-                if (getChaosGameDescription() == null) {
-                    throw new IllegalArgumentException("No transformation to save");
-                }else {
-                    //User selects file path
-                    FileChooser fileChooser = new FileChooser();
-                    fileChooser.setTitle("Save Transformation File");
-                    File file = fileChooser.showSaveDialog(null);
-
-                    if (file != null) {
-                        fileText.setText(file.getAbsolutePath());
-                        System.out.println("Path chosen");
-
-                        chaosGameFileHandler.writeToFile(getChaosGameDescription(), file.getAbsolutePath());
-                        fileText.setText("File saved to " + fileText.getText());
-                    }
-                    else {
-                        fileText.setText("No path selected");
-                    }
-                }
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        });
-
+        saveAsFile.getStyleClass().add("big-sidebar-button");
+        saveAsFileBox.setPadding(new Insets(20, 0, 10, 0));
+        saveAsFile();
 
         VBox newTransformationMenu = new VBox(
                 vectorLabel, vectorX0, vectorX1,
@@ -139,6 +123,15 @@ public class CreateFractal extends Fractal{
         imaginaryPartBox.getChildren().addAll(imaginaryPart, savedImaginaryPart);
 
         Button saveTransformation = new Button("Save julia transformation");
+
+        realLabel.getStyleClass().add("sidebar-label");
+        realPart.getStyleClass().add("menu-field");
+        imaginaryLabel.getStyleClass().add("sidebar-label");
+        imaginaryPart.getStyleClass().add("menu-field");
+        VBox.setMargin(savedRealPart, new Insets(5,0,10,0));
+        VBox.setMargin(savedImaginaryPart, new Insets(0,0,10,0));
+        saveTransformation.getStyleClass().add("big-menu-button");
+
         saveTransformation.setOnAction(actionEvent -> {
 
             JuliaTransform juliaTransformPos = new JuliaTransform(
@@ -153,8 +146,8 @@ public class CreateFractal extends Fractal{
                     -1);
             newTransformations.add(juliaTransformPos);
             newTransformations.add(juliaTransformNeg);
-            savedRealPart.setText("Saved real part: " + realPart.getText());
-            savedImaginaryPart.setText("Saved imaginary part: " + imaginaryPart.getText());
+            //savedRealPart.setText("Saved real part: " + realPart.getText());
+            //savedImaginaryPart.setText("Saved imaginary part: " + imaginaryPart.getText());
             System.out.println("HER");
 
             realPart.clear();
@@ -164,11 +157,25 @@ public class CreateFractal extends Fractal{
 
         VBox saveAsFileBox = new VBox();
         fileText = new Text("No path selected");
-        Button saveAsFile = new Button("Save as file");
+        saveAsFile = new Button("Save as file");
+        saveAsFile.getStyleClass().add("big-menu-button");
         saveAsFileBox.getChildren().addAll(saveAsFile, fileText);
         saveAsFileBox.setPadding(new Insets(20, 10, 10, 20));
+        saveAsFile();
 
+        VBox newTransformationMenu = new VBox(
+                realLabel, realPartBox,
+                imaginaryLabel, imaginaryPartBox,
+                saveTransformation, saveAsFileBox);
+        newTransformationMenu.setSpacing(5);
+        newTransformationMenu.setPadding(new Insets(0, 0, 0, 10));
+        VBox.setMargin(imaginaryPart, new Insets(5,0,15, 0));
+        VBox.setMargin(realPart, new Insets(5,0,15, 0));
+        VBox.setMargin(saveTransformation, new Insets(5,0,15, 0));
+        getRoot().setLeft(newTransformationMenu);
+    }
 
+    public void saveAsFile(){
         saveAsFile.setOnAction(actionEvent -> {
             try {
                 if (getChaosGameDescription() == null) {
@@ -194,19 +201,6 @@ public class CreateFractal extends Fractal{
                 throw new RuntimeException(e);
             }
         });
-
-
-        VBox newTransformationMenu = new VBox(
-                realLabel, realPartBox,
-                imaginaryLabel, imaginaryPartBox,
-                saveTransformation);
-        newTransformationMenu.setSpacing(5);
-        newTransformationMenu.setPadding(new Insets(0, 0, 0, 10));
-        VBox.setMargin(imaginaryPart, new Insets(5,0,15, 0));
-        VBox.setMargin(realPart, new Insets(5,0,15, 0));
-        VBox.setMargin(saveTransformation, new Insets(5,0,15, 0));
-        getRoot().setLeft(newTransformationMenu);
-
     }
 
     public void showFractalOnActionCreate(){

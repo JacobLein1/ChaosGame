@@ -4,23 +4,24 @@
 
 .menu-background {
     -fx-background-color: #7592E9;
-    -fx-border-color: derive(-fx-control-inner-background, -60%);
+    -fx-border-color: derive(-fx-control-inner-background, -70%);
     -fx-border-width: 2px;
 }
 
-.menu-button {
-    -fx-background-color: #B5C4F3;
-    -fx-pref-width: 50;
+.menu-field {
+    -fx-background-color: #D8E0F8;
+    -fx-pref-width: 60;
     -fx-pref-height: 20;
     -fx-font: arial;
     -fx-font-size: 12px;
     -fx-text-alignment: center;
-    -fx-prompt-text-fill: derive(-fx-control-inner-background, -50%);
-    -fx-border-color: derive(-fx-control-inner-background, -60%);
+    -fx-prompt-text-fill: derive(-fx-control-inner-background, -40%);
+    -fx-border-color: derive(-fx-control-inner-background, -40%);
     -fx-border-width: 2px;
     -fx-border-radius: 5px;
-    -fx-background-radius: 7px;
+    -fx-background-radius: 5px;
     -fx-padding: 10px;
+    -fx-background-insets: 2px;
 }
 
 .big-menu-button {
@@ -29,12 +30,24 @@
     -fx-pref-height: 45;
     -fx-font: arial;
     -fx-font-size: 12px;
-    -fx-prompt-text-fill: derive(-fx-control-inner-background, -50%);
     -fx-border-color: derive(-fx-control-inner-background, -60%);
     -fx-border-width: 2px;
     -fx-border-radius: 5px;
-    -fx-background-radius: 7px;
-    -fx-padding: 10px;
+    -fx-background-radius: 5px;
+    -fx-background-insets: 2px;
+}
+
+.big-sidebar-button {
+    -fx-background-color: #B5C4F3;
+    -fx-pref-width: 150;
+    -fx-pref-height: 45;
+    -fx-font: arial;
+    -fx-font-size: 12px;
+    -fx-border-color: derive(-fx-control-inner-background, -60%);
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-background-insets: 2px;
 }
 
 .big-home-button {
@@ -44,26 +57,27 @@
     -fx-font: arial;
     -fx-font-size: 12px;
     -fx-text-alignment: center;
-    -fx-prompt-text-fill: derive(-fx-control-inner-background, -50%);
+    -fx-prompt-text-fill: derive(-fx-control-inner-background, -40%);
     -fx-border-color: derive(-fx-control-inner-background, -60%);
     -fx-border-width: 2px;
     -fx-border-radius: 5px;
-    -fx-background-radius: 7px;
+    -fx-background-radius: 5px;
     -fx-padding: 10px;
+    -fx-background-insets: 2px;
 }
 
-.steps-button{
-    -fx-background-color: #B5C4F3;
-    -fx-pref-width: 150;
+.steps-field {
+    -fx-background-color: #D8E0F8;
+    -fx-pref-width: 90;
     -fx-font: arial;
     -fx-font-size: 12px;
     -fx-text-alignment: center;
-    -fx-prompt-text-fill: derive(-fx-control-inner-background, -50%);
-    -fx-border-color: derive(-fx-control-inner-background, -60%);
+    -fx-border-color: derive(-fx-control-inner-background, -40%);
     -fx-border-width: 2px;
     -fx-border-radius: 5px;
-    -fx-background-radius: 7px;
+    -fx-background-radius: 5px;
     -fx-padding: 10px;
+    -fx-background-insets: 2px;
 }
 
 .menu-combobox {
@@ -74,7 +88,7 @@
     -fx-border-color: derive(-fx-control-inner-background, -60%);
     -fx-border-width: 2px;
     -fx-border-radius: 5px;
-    -fx-background-radius: 7px;
+    -fx-background-radius: 5px;
     -fx-padding: 10px;
 }
 
@@ -88,6 +102,12 @@
     -fx-text-fill: #D3D3D3;
     -fx-font-size: 16px;
     -fx-font: arial;
+}
+
+.sidebar-label {
+    -fx-font-size: 16px;
+    -fx-font: arial;
+    -fx-padding: 5;
 }
 
 
