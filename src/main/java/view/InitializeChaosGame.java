@@ -33,7 +33,7 @@ public class InitializeChaosGame {
 
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
-                int value = chaosGame.getCanvas().getCanvasArray()[i][j] == 1 ? 0xFF000000 : 0xFFFFFFFF;
+                int value = chaosGame.getCanvas().getCanvasArray()[i][j] == 1 ? 0xFF000000 : 0xFFD3D3D3;
                 pixelWriter.setArgb(i, j, value);
             }
         }

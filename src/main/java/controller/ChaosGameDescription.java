@@ -11,8 +11,8 @@ import java.util.List;
  * The type Chaos game description.
  */
 public class ChaosGameDescription {
-    private final Vector2D minCoords;
-    private final Vector2D maxCoords;
+    private Vector2D minCoords;
+    private Vector2D maxCoords;
     private List<Transform2D> transforms;
 
     /**
@@ -32,9 +32,13 @@ public class ChaosGameDescription {
         return minCoords;
     }
 
+    public void setMinCoords(Vector2D minCoords) { this.minCoords = minCoords; }
+
     public Vector2D getMaxCoords() {
         return maxCoords;
     }
+
+    public void setMaxCoords(Vector2D maxCoords) { this.maxCoords = maxCoords; }
 
     public List<Transform2D> getTransforms() {
         return transforms;
