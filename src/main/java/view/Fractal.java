@@ -24,6 +24,7 @@ public class Fractal extends Application {
     private int width;
     private int height;
     private FractalDisplayObserver fractalDisplayObserver;
+    private Button showFractal;
 
     public void setMenu(){
         Label numberLabel = new Label("Number of steps:");
@@ -35,7 +36,7 @@ public class Fractal extends Application {
         showFractal = new Button("Show");
         showFractal.getStyleClass().add("menu-button");
 
-        home = new Button("Home");
+        Button home = new Button("Home");
         home.getStyleClass().add("menu-button");
 
         home.setOnAction(actionEvent -> {
