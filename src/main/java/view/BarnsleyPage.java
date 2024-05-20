@@ -18,5 +18,6 @@ public class BarnsleyPage extends Fractal{
 
         setMenu();
         showFractalOnAction();
+        setBarnsleyCoords();
     }
 }

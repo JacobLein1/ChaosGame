@@ -17,5 +17,6 @@ public class Affine2DPage extends Fractal {
 
         setMenu();
         showFractalOnAction();
+        setAffineCoords();
     }
 }

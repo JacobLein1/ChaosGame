@@ -12,5 +12,6 @@ public class JuliaPage extends Fractal {
 
         setMenu();
         showFractalOnAction();
+        setJuliaCoord();
     }
 }
