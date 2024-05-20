@@ -39,9 +39,14 @@ public class ChaosCanvas {
     }
     public void putPixel(Vector2D point){
         point = transformCoordsToIndices.Transform(point);
-        int x0 = (int) point.getX0();
-        int x1= (int) point.getX1();
-        canvasArray[x0][x1] = 1;
+        if (point.getX0() >= 0 && point.getX0() < width && point.getX1() >= 0 && point.getX1() < height) {
+            int x0 = (int) point.getX0();
+            int x1 = (int) point.getX1();
+            canvasArray[x0][x1] = 1;
+        }
+        else {
+            System.out.println("Point is outside canvas");
+        }
     }
     public int[][] getCanvasArray(){
         return canvasArray;
