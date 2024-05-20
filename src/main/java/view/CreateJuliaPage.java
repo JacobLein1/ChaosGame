@@ -11,11 +11,12 @@ public class CreateJuliaPage extends CreateFractal{
             setHeight(600);
             setChaosGameDescription(
                     new ChaosGameDescription(
-                            getMinCoords(),
-                            getMaxCoords(),
+                            new Vector2D(-1.6, -1),
+                            new Vector2D(1.6, 1.1),
                             getNewTransformations()
             ));
 
             setNewJuliaTransformationMenu();
+            showFractalOnAction();
         }
 }

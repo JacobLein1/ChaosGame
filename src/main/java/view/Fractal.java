@@ -9,16 +9,12 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.Vector2D;
-
-import java.awt.*;
 
 public class Fractal extends Application {
     private Stage stage;
@@ -35,7 +31,6 @@ public class Fractal extends Application {
     private TextField maxCoordX0;
     private TextField maxCoordX1;
     private FractalDisplayObserver fractalDisplayObserver;
-    private Button showFractal;
 
     public void setMenu(){
         Label numberLabel = new Label("Number of steps:");
@@ -99,8 +94,8 @@ public class Fractal extends Application {
 
     public void showFractalOnAction(){
         showFractal.setOnAction(actionEvent -> {
-            chaosGameDescription.setMinCoords(getMinVector());
-            chaosGameDescription.setMaxCoords(getMaxVector());
+            chaosGameDescription.setMinCoords(getMinCoords());
+            chaosGameDescription.setMaxCoords(getMaxCoords());
             try {
                 chaosGame = new ChaosGame(chaosGameDescription, width, height);
             } catch (Exception e) {
@@ -140,11 +135,11 @@ public class Fractal extends Application {
         this.height = height;
     }
 
-    public Vector2D getMinVector(){
+    public Vector2D getMinCoords(){
         return new Vector2D(Double.parseDouble(minCoordX0.getText()), Double.parseDouble(minCoordX1.getText()));
     }
 
-    public Vector2D getMaxVector(){
+    public Vector2D getMaxCoords(){
         return new Vector2D(Double.parseDouble(maxCoordX0.getText()), Double.parseDouble(maxCoordX1.getText()));
     }
 

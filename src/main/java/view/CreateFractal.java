@@ -19,8 +19,8 @@ import java.util.List;
 
 public class CreateFractal extends Fractal{
     private final List<Transform2D> newTransformations = new ArrayList<>();
-    private Vector2D minCoords = new Vector2D(0,0);
-    private Vector2D maxCoords = new Vector2D(1,1);
+    //private Vector2D minCoords = new Vector2D(0,0);
+    //private Vector2D maxCoords = new Vector2D(1,1);
     private final ChaosGameFileHandler chaosGameFileHandler = new ChaosGameFileHandler();
     private Text fileText;
 
@@ -116,6 +116,7 @@ public class CreateFractal extends Fractal{
     public void setNewJuliaTransformationMenu(){
         setMenu();
 
+        /**
         VBox minCoordsBox = new VBox();
         Label minCoordsLabel = new Label("Min coords:");
 
@@ -141,7 +142,7 @@ public class CreateFractal extends Fractal{
         VBox coordsBox = new VBox();
         coordsBox.setSpacing(5);
         coordsBox.getChildren().addAll(minCoordsBox, maxCoordsBox);
-
+        */
 
         Label realLabel = new Label("Real part");
         VBox realPartBox = new VBox();
@@ -183,22 +184,27 @@ public class CreateFractal extends Fractal{
             newTransformations.add(juliaTransformNeg);
             savedRealPart.setText("Saved real part: " + realPart.getText());
             savedImaginaryPart.setText("Saved imaginary part: " + imaginaryPart.getText());
-            savedMinCoords.setText("Saved min coords: " + minCoordsX0.getText() + ", " + minCoordsX1.getText());
-            savedMaxCoords.setText("Saved max coords: " + maxCoordsX0.getText() + ", " + maxCoordsX1.getText());
+            //savedMinCoords.setText("Saved min coords: " + minCoordsX0.getText() + ", " + minCoordsX1.getText());
+            //savedMaxCoords.setText("Saved max coords: " + maxCoordsX0.getText() + ", " + maxCoordsX1.getText());
             System.out.println("HER");
-            minCoords = new Vector2D(Double.parseDouble(minCoordsX0.getText()), Double.parseDouble(minCoordsX1.getText()));
-            maxCoords = new Vector2D(Double.parseDouble(maxCoordsX0.getText()), Double.parseDouble(maxCoordsX1.getText()));
+            //minCoords = new Vector2D(Double.parseDouble(minCoordsX0.getText()), Double.parseDouble(minCoordsX1.getText()));
+            //maxCoords = new Vector2D(Double.parseDouble(maxCoordsX0.getText()), Double.parseDouble(maxCoordsX1.getText()));
 
             realPart.clear();
             imaginaryPart.clear();
-            minCoordsX0.clear();
-            minCoordsX1.clear();
-            maxCoordsX0.clear();
-            maxCoordsX1.clear();
+            //minCoordsX0.clear();
+            //minCoordsX1.clear();
+            //maxCoordsX0.clear();
+            //maxCoordsX1.clear();
 
         });
-        VBox newTransformationMenu = new VBox(
+        /**VBox newTransformationMenu = new VBox(
                 coordsLabel, coordsBox ,realLabel, realPartBox,
+                imaginaryLabel, imaginaryPartBox,
+                saveTransformation);
+         */
+        VBox newTransformationMenu = new VBox(
+                realLabel, realPartBox,
                 imaginaryLabel, imaginaryPartBox,
                 saveTransformation);
         newTransformationMenu.setSpacing(5);
@@ -213,11 +219,14 @@ public class CreateFractal extends Fractal{
     public List<Transform2D> getNewTransformations() {
         return newTransformations;
     }
+
+    /**
     public Vector2D getMinCoords() {
         return minCoords;
     }
     public Vector2D getMaxCoords() {
         return maxCoords;
     }
+     */
 
 }
