@@ -1,4 +1,4 @@
-package controllerTests;
+package modelTests;
 
 import model.ChaosCanvas;
 import model.Vector2D;
@@ -17,6 +17,7 @@ class ChaosCanvasTest {
 
     @Test
     void putPixel() {
+        chaosCanvas.putPixel(new Vector2D(50, 50));
         Assertions.assertEquals(0,chaosCanvas.getPixel(new Vector2D(50,49)));
         Assertions.assertEquals(0,chaosCanvas.getPixel(new Vector2D(49,50)));
         Assertions.assertEquals(1, chaosCanvas.getPixel(new Vector2D(50, 50)));

@@ -1,4 +1,4 @@
-package controllerTests;
+package modelTests;
 
 import model.ChaosGame;
 import controller.ChaosGameDescription;
