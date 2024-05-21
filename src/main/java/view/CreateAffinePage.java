@@ -3,7 +3,6 @@ package view;
 import controller.ChaosGameDescription;
 import model.Vector2D;
 
-import java.util.ArrayList;
 
 public class CreateAffinePage extends CreateFractal {
 

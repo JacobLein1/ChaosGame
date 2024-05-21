@@ -1,6 +1,5 @@
 package controller;
 
-import javafx.application.Platform;
 import javafx.scene.image.ImageView;
 import view.InitializeChaosGame;
 

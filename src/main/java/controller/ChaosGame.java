@@ -2,8 +2,6 @@ package controller;
 
 import model.Vector2D;
 
-import java.util.List;
-import java.util.Observer;
 import java.util.Random;
 
 public class ChaosGame extends ChaosGameObservable {

@@ -1,13 +1,11 @@
 package view;
 
 import controller.ChaosGame;
-import controller.ChaosGameDescription;
 import controller.ChaosGameFileHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -24,6 +22,7 @@ public class CreateFractal extends Fractal{
     private Text fileText;
     private Button saveAsFile;
     private Label errorLabel;
+    private Fractal fractal;
 
     public void setNewTransformationMenu(){
         setMenu();
@@ -63,6 +62,7 @@ public class CreateFractal extends Fractal{
                     return;
                 }
                 AffineTransform2D affineTransform2D = new AffineTransform2D(
+
                         new Matrix2x2(
                                 Double.parseDouble(matrix00.getText()),
                                 Double.parseDouble(matrix01.getText()),
@@ -165,6 +165,8 @@ public class CreateFractal extends Fractal{
                         -1);
                 newTransformations.add(juliaTransformPos);
                 newTransformations.add(juliaTransformNeg);
+                savedRealPart.setText("Saved real part: " + realPart.getText());
+                savedImaginaryPart.setText("Saved imaginary part: " + imaginaryPart.getText());
                 realPart.clear();
                 imaginaryPart.clear();
                 errorLabel.setText("");
@@ -199,7 +201,6 @@ public class CreateFractal extends Fractal{
                 if (getChaosGameDescription() == null) {
                     throw new IllegalArgumentException("No transformation to save");
                 }else {
-                    //User selects file path
                     FileChooser fileChooser = new FileChooser();
                     fileChooser.setTitle("Save Transformation File");
                     File file = fileChooser.showSaveDialog(null);

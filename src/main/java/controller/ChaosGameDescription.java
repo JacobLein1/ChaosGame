@@ -1,7 +1,5 @@
 package controller;
 
-import model.AffineTransform2D;
-import model.JuliaTransform;
 import model.Transform2D;
 import model.Vector2D;
 

@@ -1,6 +1,5 @@
 package model;
 
-import model.Vector2D;
 
 public class Matrix2x2 {
     private double a00;
