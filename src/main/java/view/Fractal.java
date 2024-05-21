@@ -100,20 +100,10 @@ public class Fractal extends Application {
         HBox stepsBox = new HBox(numberLabel, steps);
         HBox.setMargin(steps, new Insets(10,0,20,34));
 
-
-        toggleButton.setOnAction(actionEvent -> {
-            if (toggleButton.isSelected()){
-                toggleButton.setText("On");
-            } else {
-                toggleButton.setText("Off");
-            }
-        });
-        Label colorMode = new Label("ColorMode");
-        VBox colorModeBox = new VBox(colorMode, toggleButton);
         VBox inputBoxes = new VBox(stepsBox, vectorBox);
         HBox errorBox = new HBox(errorLabel);
         HBox buttonBox = new HBox(showFractal, saveFractalAsImage, home);
-        VBox buttonAndTextBox = new VBox(colorModeBox, errorBox, buttonBox, imageFileText);
+        VBox buttonAndTextBox = new VBox(errorBox, buttonBox, imageFileText);
         buttonAndTextBox.setAlignment(Pos.BOTTOM_RIGHT);
         imageFileText.setAlignment(Pos.BOTTOM_RIGHT);
 
