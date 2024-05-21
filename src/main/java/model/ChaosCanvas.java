@@ -70,9 +70,9 @@ public class ChaosCanvas {
         StringBuilder sb = new StringBuilder();
         for (int[] ints : canvasArray) {
             for (int anInt : ints) {
-                sb.append(anInt).append(" "); // Legg til matriseelement og mellomrom
+                sb.append(anInt).append(" ");
             }
-            sb.append("\n"); // Legg til linjeskift etter hver rad
+            sb.append("\n");
         }
         return sb.toString();
     }
