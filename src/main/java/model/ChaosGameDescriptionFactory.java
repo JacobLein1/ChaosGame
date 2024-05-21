@@ -1,7 +1,7 @@
 package model;
 
 
-import model.*;
+import controller.ChaosGameDescription;
 
 import java.util.ArrayList;
 import java.util.List;

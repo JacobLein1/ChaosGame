@@ -1,5 +1,6 @@
 package model;
 
+import controller.ChaosGameDescription;
 import controller.ChaosGameObservable;
 
 import java.util.Random;

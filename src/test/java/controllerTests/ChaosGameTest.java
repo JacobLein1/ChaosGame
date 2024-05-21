@@ -1,7 +1,7 @@
 package controllerTests;
 
 import model.ChaosGame;
-import model.ChaosGameDescription;
+import controller.ChaosGameDescription;
 import model.AffineTransform2D;
 import model.Matrix2x2;
 import model.Transform2D;

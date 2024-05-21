@@ -18,7 +18,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.ChaosGame;
-import model.ChaosGameDescription;
+import controller.ChaosGameDescription;
 import model.Vector2D;
 
 import javax.imageio.ImageIO;

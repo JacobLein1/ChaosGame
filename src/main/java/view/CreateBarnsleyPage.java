@@ -1,6 +1,6 @@
 package view;
 
-import model.ChaosGameDescription;
+import controller.ChaosGameDescription;
 import model.Vector2D;
 
 public class CreateBarnsleyPage extends CreateFractal {
