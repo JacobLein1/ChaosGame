@@ -23,7 +23,7 @@ public class CreateFractal extends Fractal{
     private final ChaosGameFileHandler chaosGameFileHandler = new ChaosGameFileHandler();
     private Text fileText;
     private Button saveAsFile;
-
+    private Label errorLabel;
 
     public void setNewTransformationMenu(){
         setMenu();
@@ -43,6 +43,8 @@ public class CreateFractal extends Fractal{
         vectorX0.setPromptText("X0");
         vectorX1.setPromptText("X1");
         Button saveTransformation = new Button("Save transformation");
+        errorLabel = new Label("");
+        errorLabel.setStyle("-fx-text-fill: red;");
 
         matrixLabel.getStyleClass().add("sidebar-label");
         matrix00.getStyleClass().add("menu-field");
@@ -55,22 +57,34 @@ public class CreateFractal extends Fractal{
         saveTransformation.getStyleClass().add("big-sidebar-button");
 
         saveTransformation.setOnAction(actionEvent -> {
-            AffineTransform2D affineTransform2D = new AffineTransform2D(
-                    new Matrix2x2(
-                            Double.parseDouble(matrix00.getText()),
-                            Double.parseDouble(matrix01.getText()),
-                            Double.parseDouble(matrix10.getText()),
-                            Double.parseDouble(matrix11.getText())),
-                    new Vector2D(
-                            Double.parseDouble(vectorX0.getText()),
-                            Double.parseDouble(vectorX1.getText())));
-            newTransformations.add(affineTransform2D);
-            matrix00.clear();
-            matrix01.clear();
-            matrix10.clear();
-            matrix11.clear();
-            vectorX0.clear();
-            vectorX1.clear();
+            try{
+                if (matrix00.getText().isEmpty() || matrix01.getText().isEmpty() || matrix10.getText().isEmpty() || matrix11.getText().isEmpty() || vectorX0.getText().isEmpty() || vectorX1.getText().isEmpty()){
+                    errorLabel.setText("Please fill in all fields");
+                    return;
+                }
+                AffineTransform2D affineTransform2D = new AffineTransform2D(
+                        new Matrix2x2(
+                                Double.parseDouble(matrix00.getText()),
+                                Double.parseDouble(matrix01.getText()),
+                                Double.parseDouble(matrix10.getText()),
+                                Double.parseDouble(matrix11.getText())),
+                        new Vector2D(
+                                Double.parseDouble(vectorX0.getText()),
+                                Double.parseDouble(vectorX1.getText())));
+                newTransformations.add(affineTransform2D);
+                matrix00.clear();
+                matrix01.clear();
+                matrix10.clear();
+                matrix11.clear();
+                vectorX0.clear();
+                vectorX1.clear();
+                errorLabel.setText("");
+            } catch (NumberFormatException e){
+                errorLabel.setText("Please enter valid numbers in all fields");
+            }
+            catch (Exception e){
+                errorLabel.setText("An unexpected error occurred");
+            }
         });
 
         VBox saveAsFileBox = new VBox();
@@ -84,7 +98,7 @@ public class CreateFractal extends Fractal{
         VBox newTransformationMenu = new VBox(
                 vectorLabel, vectorX0, vectorX1,
                 matrixLabel, matrix00, matrix01, matrix10, matrix11,
-                saveTransformation, saveAsFileBox);
+                saveTransformation, errorLabel, saveAsFileBox);
         newTransformationMenu.setSpacing(5);
         newTransformationMenu.setPadding(new Insets(0, 0, 0, 10));
         VBox.setMargin(vectorX1, new Insets(5,0,15, 0));
@@ -102,10 +116,10 @@ public class CreateFractal extends Fractal{
         Label realLabel = new Label("Real part");
         VBox realPartBox = new VBox();
 
-        Text errorTextReal = new Text();
+
         HBox reaPartTextFieldBox = new HBox();
         TextField realPart = new TextField();
-        reaPartTextFieldBox.getChildren().addAll(realPart,errorTextReal);
+        reaPartTextFieldBox.getChildren().add(realPart);
 
         Text savedRealPart = new Text("No saved real part");
         realPart.setPromptText("Real part");
@@ -116,13 +130,14 @@ public class CreateFractal extends Fractal{
 
         TextField imaginaryPart = new TextField();
         HBox imaginaryPartTextFieldBox = new HBox();
-        Text errorTextImaginary = new Text();
-        imaginaryPartTextFieldBox.getChildren().addAll(imaginaryPart, errorTextImaginary);
+        imaginaryPartTextFieldBox.getChildren().add(imaginaryPart);
         Text savedImaginaryPart = new Text("No saved imaginary part");
         imaginaryPart.setPromptText("Imaginary part");
         imaginaryPartBox.getChildren().addAll(imaginaryPart, savedImaginaryPart);
 
         Button saveTransformation = new Button("Save julia transformation");
+        errorLabel = new Label("");
+        errorLabel.setStyle("-fx-text-fill: red;");
 
         realLabel.getStyleClass().add("sidebar-label");
         realPart.getStyleClass().add("menu-field");
@@ -133,26 +148,29 @@ public class CreateFractal extends Fractal{
         saveTransformation.getStyleClass().add("big-menu-button");
 
         saveTransformation.setOnAction(actionEvent -> {
-
-            JuliaTransform juliaTransformPos = new JuliaTransform(
-                    new Complex(
-                            Double.parseDouble(realPart.getText()),
-                            Double.parseDouble(imaginaryPart.getText())),
-                    1);
-            JuliaTransform juliaTransformNeg = new JuliaTransform(
-                    new Complex(
-                            Double.parseDouble(realPart.getText()),
-                            Double.parseDouble(imaginaryPart.getText())),
-                    -1);
-            newTransformations.add(juliaTransformPos);
-            newTransformations.add(juliaTransformNeg);
-            //savedRealPart.setText("Saved real part: " + realPart.getText());
-            //savedImaginaryPart.setText("Saved imaginary part: " + imaginaryPart.getText());
-            System.out.println("HER");
-
-            realPart.clear();
-            imaginaryPart.clear();
-
+            if (realPart.getText().isEmpty() || imaginaryPart.getText().isEmpty()){
+                errorLabel.setText("Please fill in all fields");
+                return;
+            }
+            try{
+                JuliaTransform juliaTransformPos = new JuliaTransform(
+                        new Complex(
+                                Double.parseDouble(realPart.getText()),
+                                Double.parseDouble(imaginaryPart.getText())),
+                        1);
+                JuliaTransform juliaTransformNeg = new JuliaTransform(
+                        new Complex(
+                                Double.parseDouble(realPart.getText()),
+                                Double.parseDouble(imaginaryPart.getText())),
+                        -1);
+                newTransformations.add(juliaTransformPos);
+                newTransformations.add(juliaTransformNeg);
+                realPart.clear();
+                imaginaryPart.clear();
+                errorLabel.setText("");
+            } catch (NumberFormatException e){
+                errorLabel.setText("Please enter a valid number");
+            }
         });
 
         VBox saveAsFileBox = new VBox();
@@ -165,7 +183,7 @@ public class CreateFractal extends Fractal{
 
         VBox newTransformationMenu = new VBox(
                 realLabel, realPartBox,
-                imaginaryLabel, imaginaryPartBox,
+                imaginaryLabel, imaginaryPartBox, errorLabel,
                 saveTransformation, saveAsFileBox);
         newTransformationMenu.setSpacing(5);
         newTransformationMenu.setPadding(new Insets(0, 0, 0, 10));
