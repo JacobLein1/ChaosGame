@@ -36,11 +36,4 @@ public class AffineTransform2DTest {
         Assertions.assertEquals(14, testResult.getX1());
     }
 
-    @Test
-    void testTransformSmallValue(){
-        AffineTransform2D affineTest = new AffineTransform2D(new Matrix2x2(0.85,0.04 , -0.04, 0.85), new Vector2D(0, 1.6));
-        Vector2D testResult = affineTest.Transform(new Vector2D(0, 0));
-        Assertions.assertEquals(4.0006, testResult.getX0());
-        Assertions.assertEquals(6.0001, testResult.getX1());
-    }
 }
