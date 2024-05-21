@@ -1,6 +1,6 @@
 package view;
 
-import controller.ChaosGameDescriptionFactory;
+import model.ChaosGameDescriptionFactory;
 
 public class JuliaPage extends Fractal {
 

@@ -1,6 +1,6 @@
 package view;
 
-import controller.ChaosGameDescriptionFactory;
+import model.ChaosGameDescriptionFactory;
 
 /**
  * The type Affine 2 d page.

@@ -1,7 +1,7 @@
 package view;
 
-import controller.ChaosGame;
-import controller.ChaosGameDescription;
+import model.ChaosGame;
+import model.ChaosGameDescription;
 import controller.ChaosGameFileHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;

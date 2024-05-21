@@ -1,7 +1,7 @@
 package controllerTests;
 
-import controller.ChaosGame;
-import controller.ChaosGameDescription;
+import model.ChaosGame;
+import model.ChaosGameDescription;
 import model.AffineTransform2D;
 import model.Matrix2x2;
 import model.Transform2D;
@@ -9,7 +9,6 @@ import model.Vector2D;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import java.util.Vector;
 
 import static org.junit.jupiter.api.Assertions.*;
 

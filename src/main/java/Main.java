@@ -1,8 +1,3 @@
-import controller.ChaosGame;
-import controller.ChaosGameDescriptionFactory;
-import view.Affine2DPage;
-import view.HomePage;
-
 public class Main {
 
     public static void main(String[] args) throws Exception {
@@ -78,7 +73,7 @@ public class Main {
         ChaosGame chaosGame = new ChaosGame(ChaosGameDescriptionFactory.get("Barnsley"), 100, 100);
         chaosGame.runSteps(10000);
         //It works 😄
-        //ChaosGame chaosGame = new ChaosGame(controller.ChaosGameDescriptionFactory.barnsley(), 100, 100);
+        //ChaosGame chaosGame = new ChaosGame(model.ChaosGameDescriptionFactory.barnsley(), 100, 100);
         //chaosGame.runSteps(10000);
 
         for (int i = 0; i < chaosGame.getCanvas().getCanvasArray().length; i++) {

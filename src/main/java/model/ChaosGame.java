@@ -1,6 +1,6 @@
-package controller;
+package model;
 
-import model.Vector2D;
+import controller.ChaosGameObservable;
 
 import java.util.Random;
 

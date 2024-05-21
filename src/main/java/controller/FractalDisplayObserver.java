@@ -1,7 +1,7 @@
 package controller;
 
 import javafx.scene.image.ImageView;
-import view.InitializeChaosGame;
+import model.ChaosGame;
 
 public class FractalDisplayObserver implements ChaosGameObserver{
     private final InitializeChaosGame initializeChaosGame;

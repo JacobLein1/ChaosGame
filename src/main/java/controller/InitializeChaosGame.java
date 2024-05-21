@@ -1,6 +1,6 @@
-package view;
+package controller;
 
-import controller.ChaosGame;
+import model.ChaosGame;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;

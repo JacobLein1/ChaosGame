@@ -1,16 +1,9 @@
 package controllerTests;
 
-import controller.ChaosCanvas;
-import controller.ChaosGame;
+import model.ChaosCanvas;
 import model.Vector2D;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.Vector;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class ChaosCanvasTest {
     private final Vector2D minCoords = new Vector2D(0, 0);

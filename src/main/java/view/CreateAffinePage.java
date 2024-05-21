@@ -1,6 +1,6 @@
 package view;
 
-import controller.ChaosGameDescription;
+import model.ChaosGameDescription;
 import model.Vector2D;
 
 

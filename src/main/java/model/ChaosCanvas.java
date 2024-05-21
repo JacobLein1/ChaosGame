@@ -1,4 +1,4 @@
-package controller;
+package model;
 
 import model.AffineTransform2D;
 import model.Matrix2x2;
