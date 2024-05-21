@@ -1,8 +1,6 @@
 package view;
 
-import controller.ChaosGame;
-import controller.ChaosGameDescription;
-import controller.FractalDisplayObserver;
+import controller.*;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -23,7 +21,6 @@ import model.Vector2D;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.awt.image.ColorModel;
 import java.io.File;
 import java.io.IOException;
 
@@ -41,7 +38,6 @@ public class Fractal extends Application {
     private TextField minCoordX1;
     private TextField maxCoordX0;
     private TextField maxCoordX1;
-    private FractalDisplayObserver fractalDisplayObserver;
     private ImageView imageView;
     private Label imageFileText;
     private Label errorLabel = new Label();
@@ -170,9 +166,10 @@ public class Fractal extends Application {
 
             int stepsValue = Integer.parseInt(steps.getText().trim());
             if (stepsValue > 0) {
-                fractalDisplayObserver = new FractalDisplayObserver(chaosGame, stepsValue, width, height);
-                fractalDisplayObserver.updateGame();
-                imageView = fractalDisplayObserver.getFractalImageView();
+                FractalDisplayObserver chaosGameObserver = new FractalDisplayObserver(chaosGame, stepsValue, width, height);
+                chaosGame.attach(chaosGameObserver);
+                chaosGame.notifyObservers();
+                imageView = chaosGameObserver.getFractalImageView();
                 root.setCenter(imageView);
             } else {
                 throw new NumberFormatException("Steps has to be a positive number");
