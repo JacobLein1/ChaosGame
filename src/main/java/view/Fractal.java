@@ -42,6 +42,7 @@ public class Fractal extends Application {
     private FractalDisplayObserver fractalDisplayObserver;
     private ImageView imageView;
     private Label imageFileText;
+    private Label errorLabel = new Label();
 
     public void setMenu(){
         Label numberLabel = new Label("Number of steps:");
@@ -74,10 +75,13 @@ public class Fractal extends Application {
         maxCoordX1.getStyleClass().add("menu-field");
         saveFractalAsImage.getStyleClass().add("big-menu-button");
 
+
         home.setOnAction(actionEvent -> {
             HomePage homePage = new HomePage();
             homePage.start(stage);
         });
+        errorLabel.setText("");
+        errorLabel.setStyle("-fx-text-fill: red;");
 
         saveFractalAsImage.setOnAction(actionEvent -> {
             try {
@@ -97,8 +101,9 @@ public class Fractal extends Application {
         HBox.setMargin(steps, new Insets(10,0,20,34));
 
         VBox inputBoxes = new VBox(stepsBox, vectorBox);
+        HBox errorBox = new HBox(errorLabel);
         HBox buttonBox = new HBox(showFractal, saveFractalAsImage, home);
-        VBox buttonAndTextBox = new VBox(buttonBox, imageFileText);
+        VBox buttonAndTextBox = new VBox(errorBox, buttonBox, imageFileText);
         buttonAndTextBox.setAlignment(Pos.BOTTOM_RIGHT);
         imageFileText.setAlignment(Pos.BOTTOM_RIGHT);
 
@@ -120,22 +125,53 @@ public class Fractal extends Application {
 
     public void showFractalOnAction(){
         showFractal.setOnAction(actionEvent -> {
-            chaosGameDescription.setMinCoords(getMinCoords());
-            chaosGameDescription.setMaxCoords(getMaxCoords());
-            try {
-                chaosGame = new ChaosGame(chaosGameDescription, width, height);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
+            errorLabel.setText("");
+            if (minCoordX0.getText().isEmpty() || minCoordX1.getText().isEmpty()
+                    || maxCoordX0.getText().isEmpty() || maxCoordX1.getText().isEmpty() || steps.getText().isEmpty()){
+                errorLabel.setText("Please fill in all fields");
+                return;
             }
-            displayFractal();
+
+            try {
+                double minCoordX0Value = Double.parseDouble(minCoordX0.getText());
+                double minCoordX1Value = Double.parseDouble(minCoordX1.getText());
+                double maxCoordX0Value = Double.parseDouble(maxCoordX0.getText());
+                double maxCoordX1Value = Double.parseDouble(maxCoordX1.getText());
+                if (minCoordX0Value >= maxCoordX0Value || minCoordX1Value >= maxCoordX1Value){
+                    errorLabel.setText("Minimum coordinates must be less than maximum coordinates");
+                    return;
+                }
+                chaosGameDescription.setMinCoords(new Vector2D(minCoordX0Value, minCoordX1Value));
+                chaosGameDescription.setMaxCoords(new Vector2D(maxCoordX0Value, maxCoordX1Value));
+
+                chaosGame = new ChaosGame(chaosGameDescription, width, height);
+                displayFractal();
+            } catch (NumberFormatException e) {
+                errorLabel.setText("Please enter valid numbers for coordinates and steps");
+            }
+
         });
     }
 
     public void displayFractal(){
-        fractalDisplayObserver = new FractalDisplayObserver(chaosGame, Integer.parseInt(steps.getText()), width, height);
-        fractalDisplayObserver.updateGame();
-        imageView = fractalDisplayObserver.getFractalImageView();
-        root.setCenter(imageView);
+        try{
+
+            int stepsValue = Integer.parseInt(steps.getText().trim());
+            if (stepsValue > 0) {
+                fractalDisplayObserver = new FractalDisplayObserver(chaosGame, stepsValue, width, height);
+                fractalDisplayObserver.updateGame();
+                imageView = fractalDisplayObserver.getFractalImageView();
+                root.setCenter(imageView);
+            } else {
+                throw new NumberFormatException("Steps has to be a positive number");
+            }
+
+        } catch(NumberFormatException e) {
+            errorLabel.setText("Steps has to be a whole positive number");
+        }
+        catch (RuntimeException e) {
+            errorLabel.setText("Steps cannot be larger than 100 000 000");
+        }
     }
 
     public void saveAsImage() throws IOException {
