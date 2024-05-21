@@ -1,14 +1,10 @@
 package controller;
 
-import controller.ChaosCanvas;
-import controller.ChaosGame;
-import controller.ChaosGameDescription;
-import javafx.scene.transform.Affine;
+
 import model.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class ChaosGameDescriptionFactory {
 
@@ -61,7 +57,7 @@ public class ChaosGameDescriptionFactory {
 
     public static ChaosGameDescription julia(){
         minCoords = new Vector2D(-1.6, -1);
-        maxCoords = new Vector2D(1.6, 1.1);
+        maxCoords = new Vector2D(1.6, 1);
 
         Complex complexNumberC = new Complex(-0.74543, 0.11301);
         JuliaTransform juliaTransformPositive = new JuliaTransform(complexNumberC,1);
