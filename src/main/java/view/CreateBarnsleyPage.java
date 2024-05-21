@@ -12,8 +12,8 @@ public class CreateBarnsleyPage extends CreateFractal {
 
         setChaosGameDescription(
                 new ChaosGameDescription(
-                        new Vector2D(-2.1820, 0),
-                        new Vector2D(2.6558, 9.9983),
+                        new Vector2D(-2.65, 0),
+                        new Vector2D(2.65, 10),
                         getNewTransformations())
         );
         setNewTransformationMenu();
