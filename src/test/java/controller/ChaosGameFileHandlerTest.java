@@ -214,8 +214,8 @@ class ChaosGameFileHandlerTest {
         assertEquals(chaosGame.getCanvas().getMinCoords().getX1(), -1);
         assertEquals(chaosGame.getCanvas().getMaxCoords().getX0(), 1.6);
         assertEquals(chaosGame.getCanvas().getMaxCoords().getX1(), 1);
-        assertEquals(chaosGame.getCanvas().getCanvasArray().length, 101);
-        assertEquals(chaosGame.getCanvas().getCanvasArray()[0].length, 101);
+        assertEquals(chaosGame.getCanvas().getCanvasArray().length, 100);
+        assertEquals(chaosGame.getCanvas().getCanvasArray()[0].length, 100);
     }
 
     /**
