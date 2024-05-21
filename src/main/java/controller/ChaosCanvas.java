@@ -48,6 +48,15 @@ public class ChaosCanvas {
            System.out.println("Point is outside canvas");
         }
     }
+    public void putPixelCount(Vector2D point){
+        point = transformCoordsToIndices.Transform(point);
+        if (point.getX0() >= 0 && point.getX0() < width && point.getX1() >= 0 && point.getX1() < height) {
+            int x0 = (int) point.getX0();
+            int x1 = (int) point.getX1();
+            canvasArray[x0][x1] += 1;
+        }
+    }
+
     public int[][] getCanvasArray(){
         return canvasArray;
     }

@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.WritableImage;
@@ -22,6 +23,7 @@ import model.Vector2D;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
 import java.io.File;
 import java.io.IOException;
 
@@ -43,6 +45,7 @@ public class Fractal extends Application {
     private ImageView imageView;
     private Label imageFileText;
     private Label errorLabel = new Label();
+    private ToggleButton toggleButton = new ToggleButton("Off");
 
     public void setMenu(){
         Label numberLabel = new Label("Number of steps:");
@@ -75,7 +78,6 @@ public class Fractal extends Application {
         maxCoordX1.getStyleClass().add("menu-field");
         saveFractalAsImage.getStyleClass().add("big-menu-button");
 
-
         home.setOnAction(actionEvent -> {
             HomePage homePage = new HomePage();
             homePage.start(stage);
@@ -100,10 +102,20 @@ public class Fractal extends Application {
         HBox stepsBox = new HBox(numberLabel, steps);
         HBox.setMargin(steps, new Insets(10,0,20,34));
 
+
+        toggleButton.setOnAction(actionEvent -> {
+            if (toggleButton.isSelected()){
+                toggleButton.setText("On");
+            } else {
+                toggleButton.setText("Off");
+            }
+        });
+        Label colorMode = new Label("ColorMode");
+        VBox colorModeBox = new VBox(colorMode, toggleButton);
         VBox inputBoxes = new VBox(stepsBox, vectorBox);
         HBox errorBox = new HBox(errorLabel);
         HBox buttonBox = new HBox(showFractal, saveFractalAsImage, home);
-        VBox buttonAndTextBox = new VBox(errorBox, buttonBox, imageFileText);
+        VBox buttonAndTextBox = new VBox(colorModeBox, errorBox, buttonBox, imageFileText);
         buttonAndTextBox.setAlignment(Pos.BOTTOM_RIGHT);
         imageFileText.setAlignment(Pos.BOTTOM_RIGHT);
 
