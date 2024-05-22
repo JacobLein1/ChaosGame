@@ -187,6 +187,9 @@ public class Fractal extends Application {
         } catch(NumberFormatException e) {
             errorLabel.setText("Steps has to be a whole positive number");
         }
+        catch(RuntimeException e) {
+            errorLabel.setText("Steps must be less than 100 000 000");
+        }
     }
 
     /**
