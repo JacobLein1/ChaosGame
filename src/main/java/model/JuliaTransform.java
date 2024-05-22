@@ -3,10 +3,19 @@ package model;
 
 import java.lang.Math;
 
+/**
+ * The type Julia transform.
+ */
 public class JuliaTransform implements Transform2D {
     private Complex point;
     private int sign;
 
+    /**
+     * Instantiates a new Julia transform.
+     *
+     * @param point Complex point
+     * @param sign  the sign
+     */
     public JuliaTransform(Complex point, int sign){
         this.point = point;
         this.sign = sign;

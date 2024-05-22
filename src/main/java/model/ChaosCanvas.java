@@ -6,6 +6,9 @@ import model.Vector2D;
 
 import java.util.Arrays;
 
+/**
+ * The type Chaos canvas.
+ */
 public class ChaosCanvas {
     private final int width;
     private final int height;
@@ -14,6 +17,14 @@ public class ChaosCanvas {
     private final Vector2D maxCoords;
     private final AffineTransform2D transformCoordsToIndices;
 
+    /**
+     * Instantiates a new Chaos canvas.
+     *
+     * @param width     the width
+     * @param height    the height
+     * @param minCoords the min coords
+     * @param maxCoords the max coords
+     */
     public ChaosCanvas(int width, int height, Vector2D minCoords, Vector2D maxCoords){
         this.width = width;
         this.height = height;
@@ -30,6 +41,13 @@ public class ChaosCanvas {
         this.transformCoordsToIndices = new AffineTransform2D(matrixA, b);
 
     }
+
+    /**
+     * Get pixel int.
+     *
+     * @param point the point
+     * @return the value of the pixel at the given point
+     */
     public int getPixel(Vector2D point){
         point = transformCoordsToIndices.Transform(point);
         int x0 = (int) point.getX0();
@@ -37,6 +55,12 @@ public class ChaosCanvas {
 
         return canvasArray[x0][x1];
     }
+
+    /**
+     * Sets value of given point to 1 if it is within the canvas
+     *
+     * @param point the point
+     */
     public void putPixel(Vector2D point){
         point = transformCoordsToIndices.Transform(point);
         if (point.getX0() >= 0 && point.getX0() < width && point.getX1() >= 0 && point.getX1() < height) {
@@ -44,10 +68,13 @@ public class ChaosCanvas {
             int x1 = (int) point.getX1();
             canvasArray[x0][x1] = 1;
         }
-        else {
-           System.out.println("Point is outside canvas");
-        }
     }
+
+    /**
+     * Put pixel count increments the value of the pixel at the given point by 1 if it is within the canvas
+     *
+     * @param point the point
+     */
     public void putPixelCount(Vector2D point){
         point = transformCoordsToIndices.Transform(point);
         if (point.getX0() >= 0 && point.getX0() < width && point.getX1() >= 0 && point.getX1() < height) {
@@ -60,6 +87,10 @@ public class ChaosCanvas {
     public int[][] getCanvasArray(){
         return canvasArray;
     }
+
+    /**
+     * Sets the value of all pixels in the canvas to 0
+     */
     public void clearCanvas(){
         for (int[] ints : canvasArray) {
             Arrays.fill(ints, 0);

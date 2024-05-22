@@ -1,9 +1,18 @@
 package model;
 
+/**
+ * The type Affine transform 2D.
+ */
 public class AffineTransform2D implements Transform2D {
     private Matrix2x2 matrix;
     private Vector2D vector;
 
+    /**
+     * Instantiates a new Affine transform 2D.
+     *
+     * @param matrix the matrix
+     * @param vector the vector
+     */
     public AffineTransform2D(Matrix2x2 matrix, Vector2D vector){
         this.matrix = matrix;
         this.vector = vector;
@@ -20,6 +29,11 @@ public class AffineTransform2D implements Transform2D {
         return matrix.multiply(point).add(vector);
     }
 
+    /**
+     * Matrix and vector as string
+     *
+     * @return Returns matrix and vector as string
+     */
     @Override
     public String toString(){
         return matrix.geta00() + ", " + matrix.geta01() + ", " + matrix.geta10()+ ", " + matrix.geta11() + ", " + vector.getX0() + ", " + vector.getX1();
