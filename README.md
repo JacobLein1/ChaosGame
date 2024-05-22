@@ -46,11 +46,14 @@ Trykk save as file for å lagre transformasjonen i en .txt fil på din pc.
 **Upload File** 
 Last opp en .txt fil med transformasjoner for å generere et fraktal. Trykk "Show" for å vise bildet.
 
- Filen må være på formatet: (Julia kan byttes ut med Affine2D)
+Filen må være på formatet: (Julia kan byttes ut med Affine2D)
 
-Julia               # Type of transform
+Julia               #Type of transform 
+
 -1.6, -1            # Lower left
+
 1.6, 1              # Upper right
+
 -.74543, .11301     # Real and imaginary parts of the constant c
 
 
