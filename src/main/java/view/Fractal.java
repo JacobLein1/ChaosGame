@@ -187,9 +187,9 @@ public class Fractal extends Application {
         } catch(NumberFormatException e) {
             errorLabel.setText("Steps has to be a whole positive number");
         }
-        catch (RuntimeException e) {
-            errorLabel.setText("Steps cannot be larger than 100 000 000");
-        }
+        //catch (RuntimeException e) {
+        //    errorLabel.setText("Steps cannot be larger than 100 000 000");
+       // }
     }
 
     /**
@@ -318,6 +318,7 @@ public class Fractal extends Application {
         this.height = height;
     }
 
+
     /**
      * Gets show fractal button.
      *
@@ -337,6 +338,25 @@ public class Fractal extends Application {
     }
 
     /**
+     * Sets the minimum coordinates
+     *
+     * @param minCoords
+     */
+    public void setMinCoords(Vector2D minCoords){
+        minCoordX0.setText(String.valueOf(minCoords.getX0()));
+        minCoordX1.setText(String.valueOf(minCoords.getX1()));
+    }
+
+    /**
+     * Sets the maximum coordinates
+     *
+     * @param maxCoords
+     */
+    public void setMaxCoords(Vector2D maxCoords){
+        maxCoordX0.setText(String.valueOf(maxCoords.getX0()));
+        maxCoordX1.setText(String.valueOf(maxCoords.getX1()));
+    }
+    /**
      * Gets the maximum coordinates as a Vector2D.
      *
      * @return the Vector2D
@@ -344,6 +364,8 @@ public class Fractal extends Application {
     public Vector2D getMaxCoords(){
         return new Vector2D(Double.parseDouble(maxCoordX0.getText()), Double.parseDouble(maxCoordX1.getText()));
     }
+
+
 
     /**
      * Sets the standard Affine Sierpinski triangles coordinates.

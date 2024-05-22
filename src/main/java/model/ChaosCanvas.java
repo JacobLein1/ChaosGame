@@ -45,7 +45,7 @@ public class ChaosCanvas {
             canvasArray[x0][x1] = 1;
         }
         else {
-           System.out.println("Point is outside canvas");
+           //System.out.println("Point is outside canvas");
         }
     }
     public void putPixelCount(Vector2D point){

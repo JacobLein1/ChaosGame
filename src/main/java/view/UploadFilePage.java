@@ -18,6 +18,7 @@ import java.io.File;
 public class UploadFilePage extends Fractal {
 
     private final ChaosGameFileHandler chaosGameFileHandler = new ChaosGameFileHandler();
+    private ChaosGameDescription chaosGameDescription;
     private final int width = 500;
     private final int height = 600;
     private File file;
@@ -27,6 +28,8 @@ public class UploadFilePage extends Fractal {
      */
     public UploadFilePage() {
         setPageTitle("Upload file");
+        setWidth(500);
+        setHeight(600);
 
         setMenu();
         uploadFileButtonsOnAction(); //action for "Upload file" button
@@ -34,16 +37,15 @@ public class UploadFilePage extends Fractal {
 
     //action for "Upload file" button
     public void uploadFileButtonsOnAction(){
-        Button showFractal = new Button("Show");
-        showFractal.setOnAction(actionEvent -> {
+        //Button showFractal = new Button("Show");
+        getShowFractal().setOnAction(actionEvent -> {
             try {
-                //reads file and sets new chaosGame
-                ChaosGameDescription chaosGameDescription = chaosGameFileHandler.readTransformationFile(file.getAbsolutePath());
                 setChaosGame(new ChaosGame(chaosGameDescription, width, height));
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
             displayFractal();
+
         });
 
         VBox openFileBox = new VBox();
@@ -62,6 +64,9 @@ public class UploadFilePage extends Fractal {
                 try {
                     fileText.setText(file.getName());
                     System.out.println(file.getName());
+                    chaosGameDescription = chaosGameFileHandler.readTransformationFile(file.getAbsolutePath()); //reads file and sets new chaosGameDescription
+                    setMinCoords(chaosGameDescription.getMinCoords());
+                    setMaxCoords(chaosGameDescription.getMaxCoords());
                 } catch (Exception e) {
                     e.printStackTrace();
                     throw new IllegalArgumentException("File not found");
