@@ -1,3 +1,6 @@
+package modelTests;
+
+import model.Vector2D;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

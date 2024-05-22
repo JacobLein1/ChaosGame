@@ -1,17 +1,20 @@
-import com.sun.tools.javac.Main;
+package model;
 
 import java.lang.Math;
 
-public class Complex extends Vector2D{
+/**
+ * Represents complex number.
+ */
+public class Complex extends Vector2D {
     public Complex(double realPart,double imaginaryPart){
         super(realPart,imaginaryPart);
     }
 
-    /*Square root of a complex number
-    @param realPart - the real part of the complex number
-    @param imaginaryPart - the imaginary part of the complex number
-    return - the square root of the complex number (another complex number)
-    */
+    /**
+     * Calculates the square root of a complex number.
+     *
+     * @return a complex number that is square root of the complex number.
+     */
     public Complex sqrt(){
 
         double realPart = super.getX0();
