@@ -82,23 +82,18 @@ public class ChaosGameFileHandler {
 
                 //Clause for Julia transformation
                 else if (cleanString(parts.get(0)).equals("Julia")) {
-                    String[] complexNumberLine = parts.get(2).split(",");
+                    String[] complexNumberLine = parts.get(3).split(",");
 
                     double complexNumberLineReal = Double.parseDouble(complexNumberLine[0].trim());
                     double complexNumberLineImaginary = Double.parseDouble(complexNumberLine[1].trim());
 
 
                     Complex complexNumberC = new Complex(complexNumberLineReal, complexNumberLineImaginary);
-                    //Check if real part of complex number is negative or positive
-                    int sign = 0;
-                    if (complexNumberLineReal < 0) {
-                        sign = -1;
-                    }
-                    if (complexNumberLineReal > 0) {
-                        sign = 1;
-                    }
-                    JuliaTransform juliaTransform = new JuliaTransform(complexNumberC, sign);
-                    transformList.add(juliaTransform);
+
+                    JuliaTransform juliaTransformPos = new JuliaTransform(complexNumberC, 1);
+                    JuliaTransform juliaTransformNeg = new JuliaTransform(complexNumberC, -1);
+                    transformList.add(juliaTransformPos);
+                    transformList.add(juliaTransformNeg);
                 }
 
                 else {
