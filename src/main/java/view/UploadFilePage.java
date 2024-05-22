@@ -18,7 +18,6 @@ import java.io.File;
 public class UploadFilePage extends Fractal {
 
     private final ChaosGameFileHandler chaosGameFileHandler = new ChaosGameFileHandler();
-    private ChaosGameDescription chaosGameDescription;
     private final int width = 500;
     private final int height = 600;
     private File file;
@@ -37,10 +36,9 @@ public class UploadFilePage extends Fractal {
 
     //action for "Upload file" button
     public void uploadFileButtonsOnAction(){
-        //Button showFractal = new Button("Show");
         getShowFractal().setOnAction(actionEvent -> {
             try {
-                setChaosGame(new ChaosGame(chaosGameDescription, width, height));
+                setChaosGame(new ChaosGame(getChaosGameDescription(), width, height));
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
@@ -63,10 +61,9 @@ public class UploadFilePage extends Fractal {
             if (file != null){
                 try {
                     fileText.setText(file.getName());
-                    System.out.println(file.getName());
-                    chaosGameDescription = chaosGameFileHandler.readTransformationFile(file.getAbsolutePath()); //reads file and sets new chaosGameDescription
-                    setMinCoords(chaosGameDescription.getMinCoords());
-                    setMaxCoords(chaosGameDescription.getMaxCoords());
+                    setChaosGameDescription(chaosGameFileHandler.readTransformationFile(file.getAbsolutePath())); //reads file and sets new chaosGameDescription
+                    setMinCoords(getChaosGameDescription().getMinCoords());
+                    setMaxCoords(getChaosGameDescription().getMaxCoords());
                 } catch (Exception e) {
                     e.printStackTrace();
                     throw new IllegalArgumentException("File not found");
