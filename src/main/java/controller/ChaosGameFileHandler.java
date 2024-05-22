@@ -12,7 +12,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * This class handles all files both reading and writing.
+ */
 public class ChaosGameFileHandler {
+    /**
+     * Instantiates a new Chaos game file handler.
+     */
     public ChaosGameFileHandler(){} //Constructor
 
     /**
@@ -30,6 +36,15 @@ public class ChaosGameFileHandler {
             return s.substring(0, unwantedIndex).strip();
         }
     }
+
+
+    /**
+     * Reads transformation file and returns the values as a chaos game description.
+     *
+     * @param path the path
+     * @return the chaos game description
+     * @throws Exception the exception
+     */
     public ChaosGameDescription readTransformationFile(String path) throws Exception{
         ChaosGameDescription chaosGameDescription = null;
 
@@ -103,6 +118,13 @@ public class ChaosGameFileHandler {
         }
         return chaosGameDescription;
     }
+
+    /**
+     * Validates a transformation file.
+     *
+     * @param parts the file
+     * @return boolean, true if the file is valid
+     */
     public boolean validateTransformationFile(List<String> parts) {
         boolean result = true;
         List<String> validTypes = Arrays.asList("Affine2D", "Julia", "Barnsley");
@@ -147,9 +169,9 @@ public class ChaosGameFileHandler {
     }
 
     /**
-     * Sets affine transformation.
+     * Sets affine an transformation.
      *
-     * @param affineLine the affine line
+     * @param affineLine the affine transformation as a String[]
      * @return the affine transformation
      */
     public AffineTransform2D setAffineTransformation(String[] affineLine) {
@@ -158,7 +180,7 @@ public class ChaosGameFileHandler {
 
 
     /**
-     * Write Chaosgame description to file.
+     * Writes fractal values from a Chaos game description to a file.
      *
      * @param chaosGameDescription the chaos game description
      * @param path                 the path
@@ -244,7 +266,7 @@ public class ChaosGameFileHandler {
     }
 
     /**
-     * Insert text at specific index string. Adds " " to the original text until the index is reached, then inserts the text to insert.
+     * Insert text at specific index. Adds " " to the original text until the index is reached, then inserts the text to insert.
      *
      * @param originalText the original text
      * @param textToInsert the text to insert

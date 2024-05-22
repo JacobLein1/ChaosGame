@@ -16,17 +16,23 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class sets the sidebar menu for new Affine, Barnsley and Julia fractals.
+ */
 public class CreateFractal extends Fractal{
     private List<Transform2D> newTransformations = new ArrayList<>();
     private final ChaosGameFileHandler chaosGameFileHandler = new ChaosGameFileHandler();
     private Text fileText;
     private Button saveAsFile;
     private Label errorLabel;
-    private Fractal fractal;
 
+    /**
+     * Set new transformation menu for Affine and Barnsley fractals.
+     */
     public void setNewTransformationMenu(){
-        setMenu();
-        showFractalOnAction();
+        setMenu(); //sets top menu
+
+        //create all nodes
         Label matrixLabel = new Label("Matrix");
         TextField matrix00 = new TextField();
         TextField matrix01 = new TextField();
@@ -45,6 +51,7 @@ public class CreateFractal extends Fractal{
         errorLabel = new Label("");
         errorLabel.setStyle("-fx-text-fill: red;");
 
+        //set style
         matrixLabel.getStyleClass().add("sidebar-label");
         matrix00.getStyleClass().add("menu-field");
         matrix01.getStyleClass().add("menu-field");
@@ -55,8 +62,10 @@ public class CreateFractal extends Fractal{
         vectorX1.getStyleClass().add("menu-field");
         saveTransformation.getStyleClass().add("big-sidebar-button");
 
+        //action for the "Save transformation" button
         saveTransformation.setOnAction(actionEvent -> {
             try{
+                //if fields are empty
                 if (matrix00.getText().isEmpty() || matrix01.getText().isEmpty() || matrix10.getText().isEmpty() || matrix11.getText().isEmpty() || vectorX0.getText().isEmpty() || vectorX1.getText().isEmpty()){
                     errorLabel.setText("Please fill in all fields");
                     return;
@@ -71,7 +80,7 @@ public class CreateFractal extends Fractal{
                         new Vector2D(
                                 Double.parseDouble(vectorX0.getText()),
                                 Double.parseDouble(vectorX1.getText())));
-                newTransformations.add(affineTransform2D);
+                newTransformations.add(affineTransform2D); //adds transformation to list
                 matrix00.clear();
                 matrix01.clear();
                 matrix10.clear();
@@ -87,6 +96,7 @@ public class CreateFractal extends Fractal{
             }
         });
 
+        //save as file
         VBox saveAsFileBox = new VBox();
         fileText = new Text("No path selected");
         saveAsFile = new Button("Save as file");
@@ -104,14 +114,14 @@ public class CreateFractal extends Fractal{
         VBox.setMargin(vectorX1, new Insets(5,0,15, 0));
         VBox.setMargin(matrix11, new Insets(5,0,15,0));
         VBox.setMargin(saveTransformation, new Insets(5,0,15, 0));
-        getRoot().setLeft(newTransformationMenu);
+        getRoot().setLeft(newTransformationMenu); //sets sidebar to the left part of the BorderPane
     }
 
     /**
      * Set new julia transformation menu.
      */
     public void setNewJuliaTransformationMenu(){
-        setMenu();
+        setMenu(); //sets top menu
 
         Label realLabel = new Label("Real part");
         VBox realPartBox = new VBox();
@@ -121,10 +131,12 @@ public class CreateFractal extends Fractal{
         TextField realPart = new TextField();
         reaPartTextFieldBox.getChildren().add(realPart);
 
+        //nodes for the real part
         Text savedRealPart = new Text("No saved real part");
         realPart.setPromptText("Real part");
         realPartBox.getChildren().addAll(reaPartTextFieldBox, savedRealPart);
 
+        //nodes for the imaginary part
         Label imaginaryLabel = new Label("Imaginary part");
         VBox imaginaryPartBox = new VBox();
 
@@ -139,6 +151,7 @@ public class CreateFractal extends Fractal{
         errorLabel = new Label("");
         errorLabel.setStyle("-fx-text-fill: red;");
 
+        //set style
         realLabel.getStyleClass().add("sidebar-label");
         realPart.getStyleClass().add("menu-field");
         imaginaryLabel.getStyleClass().add("sidebar-label");
@@ -147,7 +160,9 @@ public class CreateFractal extends Fractal{
         VBox.setMargin(savedImaginaryPart, new Insets(0,0,10,0));
         saveTransformation.getStyleClass().add("big-menu-button");
 
+        //action for the "Save transformation" button
         saveTransformation.setOnAction(actionEvent -> {
+            //if fields are empty
             if (realPart.getText().isEmpty() || imaginaryPart.getText().isEmpty()){
                 errorLabel.setText("Please fill in all fields");
                 return;
@@ -163,7 +178,7 @@ public class CreateFractal extends Fractal{
                                 Double.parseDouble(realPart.getText()),
                                 Double.parseDouble(imaginaryPart.getText())),
                         -1);
-                newTransformations.add(juliaTransformPos);
+                newTransformations.add(juliaTransformPos); //adds complex number to list
                 newTransformations.add(juliaTransformNeg);
                 savedRealPart.setText("Saved real part: " + realPart.getText());
                 savedImaginaryPart.setText("Saved imaginary part: " + imaginaryPart.getText());
@@ -195,7 +210,11 @@ public class CreateFractal extends Fractal{
         getRoot().setLeft(newTransformationMenu);
     }
 
+    /**
+     * Save fractal values as a text file.
+     */
     public void saveAsFile(){
+        //action for "Save file" button
         saveAsFile.setOnAction(actionEvent -> {
             try {
                 if (getChaosGameDescription() == null) {
@@ -222,6 +241,9 @@ public class CreateFractal extends Fractal{
         });
     }
 
+    /**
+     * action for "Show" button
+     */
     public void showFractalOnActionCreate(){
         getShowFractal().setOnAction(actionEvent -> {
             getChaosGameDescription().setMinCoords(getMinCoords());
@@ -232,10 +254,15 @@ public class CreateFractal extends Fractal{
                 throw new RuntimeException(e);
             }
             displayFractal();
-            newTransformations.clear();
+            newTransformations.clear(); //empties the list of fractals
         });
     }
 
+    /**
+     * Gets the saved transformations.
+     *
+     * @return the transformations as a List
+     */
     public List<Transform2D> getNewTransformations() {
         return newTransformations;
     }

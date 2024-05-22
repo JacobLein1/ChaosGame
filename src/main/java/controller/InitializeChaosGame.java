@@ -5,12 +5,23 @@ import javafx.scene.image.ImageView;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 
+/**
+ * This class initializes a new chaos game and creates an ImageView that displays the fractal.
+ */
 public class InitializeChaosGame {
 
     private final ChaosGame chaosGame;
     private final int width;
     private final int height;
 
+    /**
+     * Instantiates a new chaos game and initialises it with the method runSteps.
+     *
+     * @param chaosGame the chaos game
+     * @param steps     the steps
+     * @param width     the width
+     * @param height    the height
+     */
     public InitializeChaosGame(ChaosGame chaosGame, int steps, int width, int height) {
         this.chaosGame = chaosGame;
         this.width = width;
@@ -27,6 +38,11 @@ public class InitializeChaosGame {
         }
     }
 
+    /**
+     * Creates a fractal display as an image view.
+     *
+     * @return the image view
+     */
     public ImageView createFractalDisplay(){
         WritableImage image = new WritableImage(width, height);
         PixelWriter pixelWriter = image.getPixelWriter();
@@ -42,6 +58,12 @@ public class InitializeChaosGame {
         view.setRotate(90);
         return view;
     }
+
+    /**
+     * Create fractal display grey scale image view.
+     *
+     * @return the image view
+     */
     public ImageView createFractalDisplayGreyScale(){
         WritableImage image = new WritableImage(width, height);
         PixelWriter pixelWriter = image.getPixelWriter();

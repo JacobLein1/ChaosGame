@@ -26,6 +26,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Superclass that shows the top menu, the fractal as an image and saves the fractal as an image.
+ */
 public class Fractal extends Application {
     private Stage stage;
     private TextField steps;
@@ -45,7 +48,11 @@ public class Fractal extends Application {
     private Label errorLabel = new Label();
     private ToggleButton toggleButton = new ToggleButton("Off");
 
+    /**
+     * Sets the top menu
+     */
     public void setMenu(){
+        //all nodes
         Label numberLabel = new Label("Number of steps:");
         steps = new TextField();
         showFractal = new Button("Show");
@@ -64,6 +71,7 @@ public class Fractal extends Application {
         maxCoordX0.setPromptText("X0");
         maxCoordX1.setPromptText("X1");
 
+        //set style
         numberLabel.getStyleClass().add("menu-label");
         steps.getStyleClass().add("steps-field");
         showFractal.getStyleClass().add("big-menu-button");
@@ -76,6 +84,7 @@ public class Fractal extends Application {
         maxCoordX1.getStyleClass().add("menu-field");
         saveFractalAsImage.getStyleClass().add("big-menu-button");
 
+        //returns to home page when "Home" button is pressed
         home.setOnAction(actionEvent -> {
             HomePage homePage = new HomePage();
             homePage.start(stage);
@@ -83,6 +92,7 @@ public class Fractal extends Application {
         errorLabel.setText("");
         errorLabel.setStyle("-fx-text-fill: red;");
 
+        //action for "Save image" button
         saveFractalAsImage.setOnAction(actionEvent -> {
             try {
                 saveAsImage();
@@ -119,13 +129,17 @@ public class Fractal extends Application {
         VBox.setMargin(imageFileText, new Insets(0,20,0,0));
         menu.getStyleClass().add("menu-background");
 
-        root.setTop(menu);
+        root.setTop(menu); //sets menu to the top part of the BorderPane
         root.getStyleClass().add("background");
     }
 
+    /**
+     * action for the "Show" button. Displays the fractal as an image.
+     */
     public void showFractalOnAction(){
         showFractal.setOnAction(actionEvent -> {
             errorLabel.setText("");
+            //if fields are empty
             if (minCoordX0.getText().isEmpty() || minCoordX1.getText().isEmpty()
                     || maxCoordX0.getText().isEmpty() || maxCoordX1.getText().isEmpty() || steps.getText().isEmpty()){
                 errorLabel.setText("Please fill in all fields");
@@ -153,6 +167,9 @@ public class Fractal extends Application {
         });
     }
 
+    /**
+     * Display fractal.
+     */
     public void displayFractal(){
         try{
 
@@ -160,9 +177,9 @@ public class Fractal extends Application {
             if (stepsValue > 0) {
                 FractalDisplayObserver chaosGameObserver = new FractalDisplayObserver(chaosGame, stepsValue, width, height);
                 chaosGame.attach(chaosGameObserver);
-                chaosGame.notifyObservers();
+                chaosGame.notifyObservers(); //notifies all observers
                 imageView = chaosGameObserver.getFractalImageView();
-                root.setCenter(imageView);
+                root.setCenter(imageView); //sets image in the center part of the BorderPane
             } else {
                 throw new NumberFormatException("Steps has to be a positive number");
             }
@@ -170,11 +187,16 @@ public class Fractal extends Application {
         } catch(NumberFormatException e) {
             errorLabel.setText("Steps has to be a whole positive number");
         }
-        catch (RuntimeException e) {
-            errorLabel.setText("Steps cannot be larger than 100 000 000");
-        }
+        //catch (RuntimeException e) {
+        //    errorLabel.setText("Steps cannot be larger than 100 000 000");
+       // }
     }
 
+    /**
+     * Saves the fractal as an PNG image file.
+     *
+     * @throws IOException the io exception
+     */
     public void saveAsImage() throws IOException {
         WritableImage writableImage = new WritableImage(height, width);
         imageView.snapshot(null, writableImage);
@@ -184,7 +206,7 @@ public class Fractal extends Application {
 
         for (int y = 0; y < width; y++) {
             for (int x = 0; x < height; x++) {
-                bufferedImage.setRGB(x, y, pixelReader.getArgb(x, y));
+                bufferedImage.setRGB(x, y, pixelReader.getArgb(x, y)); //creates a bufferedImage
             }
         }
 
@@ -200,6 +222,7 @@ public class Fractal extends Application {
                 File file = fileChooser.showSaveDialog(null);
 
                 if (file != null) {
+                    //image is saved to path
                     imageFileText.setText(file.getAbsolutePath());
                     imageFileText.setText("File saved to " + imageFileText.getText());
 
@@ -214,54 +237,139 @@ public class Fractal extends Application {
         }
     }
 
+    /**
+     * Sets the page title.
+     *
+     * @param pageTitle the page title
+     */
     public void setPageTitle(String pageTitle) {
         this.pageTitle = pageTitle;
     }
 
+    /**
+     * Gets BorderPane root.
+     *
+     * @return the root
+     */
     public BorderPane getRoot() {
         return root;
     }
 
+    /**
+     * Sets chaos game.
+     *
+     * @param chaosGame the chaos game
+     */
     public void setChaosGame(ChaosGame chaosGame){
         this.chaosGame = chaosGame;
     }
 
+    /**
+     * Gets chaos game description.
+     *
+     * @return the chaos game description
+     */
     public ChaosGameDescription getChaosGameDescription() {
         return chaosGameDescription;
     }
 
+    /**
+     * Sets chaos game description.
+     *
+     * @param chaosGameDescription the chaos game description
+     */
     public void setChaosGameDescription(ChaosGameDescription chaosGameDescription) {
         this.chaosGameDescription = chaosGameDescription;
     }
 
+    /**
+     * Gets image width.
+     *
+     * @return the width
+     */
     public int getWidth() {
         return width;
     }
 
+    /**
+     * Sets image width.
+     *
+     * @param width the width
+     */
     public void setWidth(int width) {
         this.width = width;
     }
 
+    /**
+     * Gets image height.
+     *
+     * @return the height
+     */
     public int getHeight() {
         return height;
     }
 
+    /**
+     * Sets image height.
+     *
+     * @param height the height
+     */
     public void setHeight(int height) {
         this.height = height;
     }
 
+
+    /**
+     * Gets show fractal button.
+     *
+     * @return the show fractal button
+     */
     public Button getShowFractal() {
         return showFractal;
     }
 
+    /**
+     * Gets the minimum coordinates as a Vector2D.
+     *
+     * @return the Vector2D
+     */
     public Vector2D getMinCoords(){
         return new Vector2D(Double.parseDouble(minCoordX0.getText()), Double.parseDouble(minCoordX1.getText()));
     }
 
+    /**
+     * Sets the minimum coordinates
+     *
+     * @param minCoords
+     */
+    public void setMinCoords(Vector2D minCoords){
+        minCoordX0.setText(String.valueOf(minCoords.getX0()));
+        minCoordX1.setText(String.valueOf(minCoords.getX1()));
+    }
+
+    /**
+     * Sets the maximum coordinates
+     *
+     * @param maxCoords
+     */
+    public void setMaxCoords(Vector2D maxCoords){
+        maxCoordX0.setText(String.valueOf(maxCoords.getX0()));
+        maxCoordX1.setText(String.valueOf(maxCoords.getX1()));
+    }
+    /**
+     * Gets the maximum coordinates as a Vector2D.
+     *
+     * @return the Vector2D
+     */
     public Vector2D getMaxCoords(){
         return new Vector2D(Double.parseDouble(maxCoordX0.getText()), Double.parseDouble(maxCoordX1.getText()));
     }
 
+
+
+    /**
+     * Sets the standard Affine Sierpinski triangles coordinates.
+     */
     public void setAffineCoords(){
         minCoordX0.setText("0");
         minCoordX1.setText("0");
@@ -269,6 +377,9 @@ public class Fractal extends Application {
         maxCoordX1.setText("1");
     }
 
+    /**
+     * Sets the standard Barnsley fern coordinates.
+     */
     public void setBarnsleyCoords(){
         minCoordX0.setText("-2.65");
         minCoordX1.setText("0");
@@ -276,6 +387,9 @@ public class Fractal extends Application {
         maxCoordX1.setText("10");
     }
 
+    /**
+     * Sets the standard Julia coordinates.
+     */
     public void setJuliaCoord(){
         minCoordX0.setText("-1.6");
         minCoordX1.setText("-1");
@@ -286,8 +400,8 @@ public class Fractal extends Application {
     @Override
     public void start(Stage stage){
         this.stage = stage;
-        Scene scene = new Scene(root, 1000, 800);
-        scene.getStylesheets().add("/css/GameStyles.css");
+        Scene scene = new Scene(root, 1000, 800); //set scene
+        scene.getStylesheets().add("/css/GameStyles.css"); //add stylesheet
 
         stage.setTitle(pageTitle);
         stage.setScene(scene);
