@@ -3,7 +3,7 @@ package view;
 import model.ChaosGameDescriptionFactory;
 
 /**
- * The type Barnsley page.
+ * This class displays the page for a Barnsley fern.
  */
 public class BarnsleyPage extends Fractal{
 
@@ -14,10 +14,10 @@ public class BarnsleyPage extends Fractal{
         setPageTitle("Barnsley Fern");
         setWidth(500);
         setHeight(600);
-        setChaosGameDescription(ChaosGameDescriptionFactory.get("Barnsley"));
+        setChaosGameDescription(ChaosGameDescriptionFactory.get("Barnsley")); //gets the ChaosGameDescription from factory
 
-        setMenu();
-        showFractalOnAction();
-        setBarnsleyCoords();
+        setMenu(); //displays top menu
+        showFractalOnAction(); //displays the fractal when show button is pressed
+        setBarnsleyCoords(); //sets the coordinates to the standard Barnsley fern values
     }
 }

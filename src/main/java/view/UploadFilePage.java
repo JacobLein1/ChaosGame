@@ -13,7 +13,7 @@ import javafx.scene.text.Text;
 import java.io.File;
 
 /**
- * The type Upload file page.
+ * This class displays the page where the user can upload a file with values for a fractal.
  */
 public class UploadFilePage extends Fractal {
 
@@ -29,13 +29,15 @@ public class UploadFilePage extends Fractal {
         setPageTitle("Upload file");
 
         setMenu();
-        uploadFileButtonsOnAction();
+        uploadFileButtonsOnAction(); //action for "Upload file" button
     }
 
+    //action for "Upload file" button
     public void uploadFileButtonsOnAction(){
         Button showFractal = new Button("Show");
         showFractal.setOnAction(actionEvent -> {
             try {
+                //reads file and sets new chaosGame
                 ChaosGameDescription chaosGameDescription = chaosGameFileHandler.readTransformationFile(file.getAbsolutePath());
                 setChaosGame(new ChaosGame(chaosGameDescription, width, height));
             } catch (Exception e) {
@@ -51,6 +53,7 @@ public class UploadFilePage extends Fractal {
         openFileBox.setPadding(new Insets(20, 10, 10, 20));
         VBox.setMargin(fileText, new Insets(10,0,0,0));
 
+        //action for "Open file" button
         openFile.setOnAction(actionEvent -> {
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Open Resource File");

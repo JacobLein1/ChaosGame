@@ -3,7 +3,7 @@ package view;
 import model.ChaosGameDescriptionFactory;
 
 /**
- * The type Affine 2 d page.
+ * This class displays the page for a Sierpinski triangle.
  */
 public class Affine2DPage extends Fractal {
     /**
@@ -13,10 +13,10 @@ public class Affine2DPage extends Fractal {
         setPageTitle("Affine2D Sierpinski");
         setWidth(500);
         setHeight(600);
-        setChaosGameDescription(ChaosGameDescriptionFactory.get("Affine2D"));
+        setChaosGameDescription(ChaosGameDescriptionFactory.get("Affine2D")); //gets the ChaosGameDescription from factory
 
-        setMenu();
-        showFractalOnAction();
-        setAffineCoords();
+        setMenu(); //displays top menu
+        showFractalOnAction(); //displays the fractal when show button is pressed
+        setAffineCoords(); //sets the coordinates to the standard Sierpinski triangle values
     }
 }

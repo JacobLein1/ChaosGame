@@ -10,7 +10,7 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 /**
- * The type Home page.
+ * This page displays the home page
  */
 public class HomePage extends Application{
     private Stage homeStage;
@@ -41,11 +41,13 @@ public class HomePage extends Application{
      * Set menu.
      */
     public void setMenu(){
+        //all nodes
         String[] fractals = {"Affine2D", "Barnsley", "Julia", "Create new Affine transformation", "Create new Barnsley transformation", "Create new Julia transformation", "Upload from files"};
         fractalType = new ComboBox<>(FXCollections.observableArrayList(fractals));
         Label header = new Label("Chaos Game");
         Button chooseFractal = new Button("Choose fractal");
 
+        //action for "Choose fractal" button
         chooseFractal.setOnAction(actionEvent -> {
             try {
                 chooseFractalOnAction();
@@ -54,6 +56,7 @@ public class HomePage extends Application{
             }
         });
 
+        //set style
         fractalType.setPrefHeight(30);
         fractalType.getStyleClass().add("menu-combobox");
         chooseFractal.getStyleClass().add("big-home-button");
@@ -68,50 +71,50 @@ public class HomePage extends Application{
         VBox center = new VBox(header, menu);
         center.setAlignment(Pos.CENTER);
 
-        root.setCenter(center);
+        root.setCenter(center); //sets the menu to the center part of the BorderPane
 
 
         root.getStyleClass().add("background");
     }
 
     /**
-     * Choose fractal on action.
+     * Action for the "Choose fractal" button
      *
      * @throws Exception the exception
      */
     public void chooseFractalOnAction() throws Exception {
         if(fractalType.getValue().equals("Julia")){
             JuliaPage juliaPage = new JuliaPage();
-            juliaPage.start(homeStage);
+            juliaPage.start(homeStage); //switch to Julia page
         }
         if(fractalType.getValue().equals("Affine2D")){
             Affine2DPage affine2DPage = new Affine2DPage();
-            affine2DPage.start(homeStage);
+            affine2DPage.start(homeStage); //switch to Affine Sierpinski triangle page
         }
         if(fractalType.getValue().equals("Barnsley")){
             BarnsleyPage barnsleyPage = new BarnsleyPage();
-            barnsleyPage.start(homeStage);
+            barnsleyPage.start(homeStage); //switch to Barnsley fern page
         }
         if(fractalType.getValue().equals("Create new Affine transformation")){
             CreateAffinePage createAffinePage = new CreateAffinePage();
-            createAffinePage.start(homeStage);
+            createAffinePage.start(homeStage); //switch to create new Affine fractal page
         }
         if(fractalType.getValue().equals("Create new Barnsley transformation")){
             CreateBarnsleyPage createBarnsleyPage = new CreateBarnsleyPage();
-            createBarnsleyPage.start(homeStage);
+            createBarnsleyPage.start(homeStage); //switch to create new Barnsley fractal page
         }
         if (fractalType.getValue().equals("Upload from files")) {
             UploadFilePage uploadPage = new UploadFilePage();
-            uploadPage.start(homeStage);
+            uploadPage.start(homeStage); //switch to upload values from file page
         }
         if(fractalType.getValue().equals("Create new Julia transformation")){
             CreateJuliaPage createJuliaPage = new CreateJuliaPage();
-            createJuliaPage.start(homeStage);
+            createJuliaPage.start(homeStage); //switch to create new Julia fractal page
         }
     }
 
     /**
-     * The entry point of application.
+     * Launches the application
      *
      * @param args the input arguments
      */
